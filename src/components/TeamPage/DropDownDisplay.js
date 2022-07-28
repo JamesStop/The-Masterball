@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-function DropDownDisplay({ specie, index }) {
+function DropDownDisplay({ specie, species }) {
 	return (
 		<option>
-			{index + 1}. {specie.name}
+			{species.indexOf(specie) + 1}. {specie.name}
 		</option>
 	);
 }
