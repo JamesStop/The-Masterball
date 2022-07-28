@@ -5,16 +5,17 @@ import TeamsPage from './components/TeamsPage/TeamsPage';
 import TeamPage from './components/TeamPage/TeamPage';
 import PokemonPage from './components/PokemonPage/PokemonPage';
 
-
 function App() {
-  return (
+	const POKE_URL = 'https://pokeapi.co/api/v2/';
+
+	return (
 		<div className='main-wrapper'>
 			<header>header</header>
 			<main>
 				<Routes>
 					<Route path='/' element={<Homepage />} />
 					<Route path='/teams/' element={<TeamsPage />} />
-					<Route path='/team/' element={<TeamPage />} />
+					<Route path='/team/' element={<TeamPage POKE_URL={POKE_URL} />} />
 					<Route path='/pokemon/' element={<PokemonPage />} />
 				</Routes>
 			</main>
