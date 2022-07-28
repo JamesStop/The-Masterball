@@ -1,5 +1,6 @@
 import React, { useInsertionEffect } from 'react';
 import { useEffect, useState } from 'react';
+import DropDownDisplay from './DropDownDisplay';
 
 function TeamPage({ POKE_URL }) {
 	const [species, setSpecies] = useState([]);
@@ -18,21 +19,18 @@ function TeamPage({ POKE_URL }) {
 		<div>
 			<section className='pokemon-selectors-wrapper'>
 				<div className='pokemon-selector-wrapper'>
-					<label for='gen1'>Generation 1</label>
+					<label htmlFor='gen1'>Generation 1</label>
 					<select id='gen1'>
 						{species
 							.filter((specie, index) => {
 								return index < 151;
 							})
-							.map((specie) => {
-								return <option>{specie.name}</option>;
+							.map((specie, index) => {
+								return <DropDownDisplay key={index} specie={specie} index={index} />;
 							})}
 					</select>
 				</div>
 			</section>
-			{species.map((specie) => {
-				return <div>{specie.index}</div>;
-			})}
 		</div>
 	);
 }
