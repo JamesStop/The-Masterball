@@ -15,7 +15,7 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Homepage />} />
 					<Route path='/teams/' element={<TeamsPage />} />
-					<Route path='/team/' element={<TeamPage POKE_URL={POKE_URL} />} />
+					<Route path='/team/:id' element={<TeamPage POKE_URL={POKE_URL} />} />
 					<Route path='/pokemon/' element={<PokemonPage />} />
 				</Routes>
 			</main>
