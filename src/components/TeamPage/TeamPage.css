@@ -14,12 +14,24 @@
     padding: 10px;
 }
 
+@media screen and (min-width: 1075px) {
+    .pokemon-selectors-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .pokemon-selectors-wrapper {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+
 .pokemon-selector-wrapper {
     display: flex;
     flex-direction: column;
     height: 50px;
     width: 200px;
-    align-items: center;    
+    align-items: center;
 }
 
 .team-display-wrapper {
@@ -31,4 +43,30 @@
     gap: 20px;
     padding: 25px;
     overflow-y: scroll;
+}
+
+@media screen and (min-width: 500px) {
+    .team-display-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .team-display-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .team-display-wrapper {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+}
+
+@media screen and (min-width: 750px) {
+    .team-display-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        justify-items: center;
+    }
 }

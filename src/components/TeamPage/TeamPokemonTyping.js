@@ -14,7 +14,7 @@ function TeamPokemonTyping({ formInfo }) {
 			<div className='typing-display'>
 				{typing.map((types) => {
 					return (
-						<div className={types.type.name}>
+						<div key={types.type.name + formInfo.name} className={types.type.name}>
 							<span>{types.type.name}</span>
 						</div>
 					);
