@@ -12,11 +12,12 @@
 
 
 header {
-  height: 20%;
+  height: 100px;
   width: 100%;
+  background-color: red;
 }
 
 main {
-  height: 80%;
+  height: calc(100% - 100px);
   width: 100%;
 }

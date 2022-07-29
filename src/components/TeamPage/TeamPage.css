@@ -1,0 +1,34 @@
+
+.team-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.pokemon-selectors-wrapper {
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+    gap: 10px;
+    height: 100px;
+    width: 100%;
+    padding: 10px;
+}
+
+.pokemon-selector-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 200px;
+    align-items: center;    
+}
+
+.team-display-wrapper {
+    width: 100%;
+    height: calc(100% - 100px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 25px;
+    overflow-y: scroll;
+}
