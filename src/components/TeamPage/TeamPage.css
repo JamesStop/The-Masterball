@@ -37,18 +37,21 @@
 .team-display-wrapper {
     width: 100%;
     height: calc(100% - 100px);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 20px;
-    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+    padding: 10px;
+    gap: 5px;
     overflow-y: scroll;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
     .team-display-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        align-items: center;
+        justify-items: center;
     }
 
     .team-display-wrapper::-webkit-scrollbar {
@@ -62,7 +65,7 @@
 
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 850px) {
     .team-display-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;

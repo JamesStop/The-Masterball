@@ -1,6 +1,6 @@
 .team-pokemon-display-wrapper {
-    height: 200px;
-    width: 200px;
+    height: 250px;
+    width: 250px;
     background-color: red;
     display: flex;
     flex-direction: column;
@@ -10,7 +10,6 @@
 }
 
 .pokemon-image-display {
-    height: 100px;
-    width: 100px;
-
+    height: 120px;
+    width: 120px;
 }
