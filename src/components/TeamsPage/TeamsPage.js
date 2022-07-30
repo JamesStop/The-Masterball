@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import TeamDisplay from './TeamDisplay';
-import './TeamsPage.css'
+import './TeamsPage.css';
 
 function TeamsPage(props) {
 	const [teams, setTeams] = useState({});
+	const [newTeamName, setNewTeamName] = useState('');
 
 	async function getTeams() {
 		try {
@@ -20,15 +21,44 @@ function TeamsPage(props) {
 		getTeams();
 	}, []);
 
+	function handleChange(event) {
+		setNewTeamName(`${event.target.value}`);
+	}
+
+	const createNewTeam = async (event) => {
+		event.preventDefault();
+		try {
+			const response = await axios.post('http://localhost:1738/api/teams', {
+				name: newTeamName,
+			});
+			setNewTeamName('');
+			getTeams();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	
+
 	if (teams.length) {
 		return (
 			<section className='teams-wrapper'>
 				<section className='new-team-create-wrapper'>
-					<div>create new team</div>
+					<form onSubmit={createNewTeam}>
+						<label htmlFor='new-team-name'>Team Name</label>
+						<input
+							type='text'
+							id='new-team-name'
+							value={newTeamName}
+							onChange={handleChange}
+							required
+						/>
+						<button type='submit'>create new team</button>
+					</form>
 				</section>
 				<section className='existing-teams-wrapper'>
 					{teams.map((team, index) => {
-						return <TeamDisplay key={index} team={team} />;
+						return <TeamDisplay getTeams={getTeams} key={index} team={team} />;
 					})}
 				</section>
 			</section>
