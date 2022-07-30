@@ -7,5 +7,11 @@
     align-items: center;
     justify-content: center;
     border-radius: 50px;
-    gap: 5px;
+    gap: 15px;
+}
+
+.pokemon-sprites-wrapper {
+    height: 150px;
+    width: 150px;
+    background-color: white;
 }

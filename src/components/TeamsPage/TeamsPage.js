@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import TeamDisplay from './TeamDisplay';
 import './TeamsPage.css';
+import TeamsDisplaySection from './TeamsDisplaySection';
 
 function TeamsPage(props) {
 	const [teams, setTeams] = useState({});
@@ -40,7 +40,7 @@ function TeamsPage(props) {
 
 	
 
-	if (teams.length) {
+
 		return (
 			<section className='teams-wrapper'>
 				<section className='new-team-create-wrapper'>
@@ -56,14 +56,10 @@ function TeamsPage(props) {
 						<button type='submit'>create new team</button>
 					</form>
 				</section>
-				<section className='existing-teams-wrapper'>
-					{teams.map((team, index) => {
-						return <TeamDisplay getTeams={getTeams} key={index} team={team} />;
-					})}
-				</section>
+				<TeamsDisplaySection getTeams={getTeams} teams={teams} />
 			</section>
 		);
-	}
+
 }
 
 export default TeamsPage;
