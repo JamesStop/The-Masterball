@@ -1,10 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function TeamDisplay({team}) {
+
+	const navigate = useNavigate();
+
+	const handleEditTeam = () => {
+		navigate(`/team`)
+	}
+
     return (
 			<Link to={`/team/${team._id}`}>
-				<div>{team.name}</div>
+				<div className='team-display-wrapper'>{team.name}</div>
 			</Link>
 		);
 }
