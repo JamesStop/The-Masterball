@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import TeamDisplay from './TeamDisplay';
+import './TeamsPage.css'
 
 function TeamsPage(props) {
 	const [teams, setTeams] = useState({});
@@ -22,10 +23,14 @@ function TeamsPage(props) {
 	if (teams.length) {
 		return (
 			<section className='teams-wrapper'>
-				<div>create new team</div>
-				{teams.map((team) => {
-					return <TeamDisplay team={team}/>;
-				})}
+				<section className='new-team-create-wrapper'>
+					<div>create new team</div>
+				</section>
+				<section className='existing-teams-wrapper'>
+					{teams.map((team, index) => {
+						return <TeamDisplay key={index} team={team} />;
+					})}
+				</section>
 			</section>
 		);
 	}
