@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import TeamPokemonTyping from './TeamPokemonTyping';
 import './TeamPokemon.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function TeamPokemon({ pokemon, getTeam }) {
 	const [formInfo, setFormInfo] = useState({});
@@ -15,6 +16,12 @@ function TeamPokemon({ pokemon, getTeam }) {
 				setFormInfo(res);
 			});
 	}, []);
+
+	const navigate = useNavigate();
+
+	const goToEditing = () => {
+		navigate(`/pokemon/${pokemon._id}`);
+	};
 
 	const deletePokemon = async (event) => {
 		try {
@@ -32,7 +39,9 @@ function TeamPokemon({ pokemon, getTeam }) {
 			<div className='team-pokemon-display-wrapper'>
 				<span className='pokemon-name'>{pokemon.name}</span>
 				<div className='middle-display'>
-					<button className='poke-change-button'>edit</button>
+					<button onClick={goToEditing} className='poke-change-button'>
+						edit
+					</button>
 					<img
 						className='pokemon-image-display'
 						src={formInfo.sprites.other['official-artwork'].front_default}
