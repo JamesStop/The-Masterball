@@ -9,7 +9,20 @@
     border-radius: 50%;
 }
 
+.middle-display {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .pokemon-image-display {
     height: 120px;
     width: 120px;
+}
+
+.poke-change-button {
+    height: 25px;
+    width: 50px;
+    border-radius: 50px;
 }

@@ -12,7 +12,7 @@ function TeamPage({ POKE_URL }) {
 	const { id } = useParams();
 	const [creatingPokemon, setCreatingPokemon] = useState({})
 
-	async function getTeam() {
+	const getTeam = async() => {
 		try {
 			const response = await axios.get(`http://localhost:1738/api/teams/${id}`);
 			const results = await response.data;
@@ -230,7 +230,13 @@ function TeamPage({ POKE_URL }) {
 				</section>
 				<section className='team-display-wrapper'>
 				{team.pokemons.map((pokemon, index) => {
-					return <TeamPokemon key={pokemon._id} pokemon={pokemon} />;
+					return (
+						<TeamPokemon
+							getTeam={getTeam}
+							key={pokemon._id}
+							pokemon={pokemon}
+						/>
+					);
 				})}
 			</section>
 			</div>
