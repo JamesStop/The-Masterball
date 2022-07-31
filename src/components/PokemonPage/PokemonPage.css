@@ -6,3 +6,14 @@
     align-items: center;
     justify-content: center;
 }
+
+.big-info-wrapper {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 25px;
+}
