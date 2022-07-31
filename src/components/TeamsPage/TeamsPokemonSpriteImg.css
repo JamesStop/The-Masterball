@@ -1,12 +1,18 @@
 .pokemon-sprite-img {
-    height: 50px;
-    width: 50px;
+    height:48px;
+    width: 48px;
+}
+
+.react-draggable {
+    position: absolute;
+    top: 0;
+    left: 50px;
 }
 
 [class = '0'] {
     position: absolute;
-    top: 0;
-    left: 50px;
+        top: 0;
+        left: 50px;
 }
 
 [class='1'] {

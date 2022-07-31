@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './TeamsPokemonSpriteImg.css';
+import Draggable from 'react-draggable';
 
-function TeamsPokemonSpriteImg({ pokemon, index }) {
+
+
+
+function TeamsPokemonSpriteImg({ pokemon, index, onStop }) {
 	const [sprite, setSprite] = useState('');
+	let Draggable = require('react-draggable');
+
+
+	
 
 	useEffect(() => {
 		fetch(pokemon.formUrl)
@@ -17,9 +25,9 @@ function TeamsPokemonSpriteImg({ pokemon, index }) {
 
 	if (sprite.length) {
 		return (
-			<div className={index}>
-				<img className='pokemon-sprite-img' src={sprite} alt='' />
-			</div>
+			<Draggable bounds='parent'>
+				<img className={`pokemon-sprite-img ${index}`} src={sprite} alt='' />
+			</Draggable>
 		);
 	} else {
 		return <div>bark</div>;
