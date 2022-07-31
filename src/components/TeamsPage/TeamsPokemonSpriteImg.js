@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './TeamsPokemonSpriteImg.css';
 
-function TeamsPokemonSpriteImg({ pokemon }) {
+function TeamsPokemonSpriteImg({ pokemon, index }) {
 	const [sprite, setSprite] = useState('');
 
 	useEffect(() => {
@@ -10,14 +10,17 @@ function TeamsPokemonSpriteImg({ pokemon }) {
 				return res.json();
 			})
 			.then((res) => {
-				console.log(res);
 				const spriteUrl = res.sprites.front_default;
 				setSprite(spriteUrl);
 			});
 	}, []);
 
 	if (sprite.length) {
-		return <img className='pokemon-sprite-img' src={sprite} alt='' />;
+		return (
+			<div className={index}>
+				<img className='pokemon-sprite-img' src={sprite} alt='' />
+			</div>
+		);
 	} else {
 		return <div>bark</div>;
 	}
