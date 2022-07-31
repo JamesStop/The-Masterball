@@ -19,10 +19,10 @@ function TeamPokemonSprites({ team }) {
 				</section>
 			);
 		} else {
-			return <section className='pokemon-sprites-wrapper'>hi</section>;
+			return <section className='pokemon-sprites-wrapper'></section>;
 		}
 	} else {
-		return <section className='pokemon-sprites-wrapper'>hi</section>;
+		return <section className='pokemon-sprites-wrapper'></section>;
 	}
 }
 

@@ -51,7 +51,7 @@ function TeamsPokemonSpriteImg({ pokemon, index  }) {
 			</Draggable>
 		);
 	} else {
-		return <div>bark</div>;
+		return <div></div>;
 	}
 }
 
