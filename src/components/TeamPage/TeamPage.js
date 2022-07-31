@@ -66,6 +66,7 @@ function TeamPage({ POKE_URL }) {
 							nickName: '',
 							speciesUrl: url,
 							formUrl: res.varieties[0].pokemon.url,
+							level: 1,
 							teamId: id,
 						});
 					});

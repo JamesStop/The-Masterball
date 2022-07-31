@@ -18,6 +18,7 @@ function PokemonPage(props) {
 		if (pokemon._id) {
 			getMoreInfo();
 		}
+		updatePokemon();
 	}, [pokemon]);
 
 	useEffect(() => {}, [morePokemonInfo]);
@@ -51,6 +52,23 @@ function PokemonPage(props) {
 			});
 	};
 
+	const updatePokemon = async () => {
+		try {
+			const response = await axios.patch(
+				`http://localhost:1738/api/pokemon/${id}`,
+				pokemon
+			);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleLevelChange = async (event) => {
+		const newLevel = event.target.value;
+		await setPokemon({ ...pokemon, level: newLevel });
+		
+	};
+
 	if (Object.keys(pokemon).length) {
 		if (Object.keys(morePokemonInfo).length) {
 			if (Object.keys(pokemonSpecies).length) {
@@ -58,12 +76,25 @@ function PokemonPage(props) {
 					<div className='pokemon-customizer-wrapper'>
 						<section className='big-info-wrapper'>
 							<div className='pokemon-number'>
-								<span>{pokemonSpecies.id}</span>
+								<span>#{pokemonSpecies.id}</span>
+							</div>
+							<div className='pokemon-level'>
+								<form className='level-form'>
+									<label className='label-level'htmlFor="level">Level</label>
+									<input
+										value={pokemon.level}
+										type='number'
+										min={1}
+										max={100}
+										className='level-input'
+										id='level'
+										onChange={handleLevelChange}
+									/>
+								</form>
 							</div>
 							<section className='name-nickname-level-wrapper'>
 								<span>{pokemon.name} /</span>
 								<span>{pokemon.nickName}</span>
-								<span>100</span>
 							</section>
 							<div className='image-wrapper'>
 								<Sprite morePokemonInfo={morePokemonInfo} pokemon={pokemon} />

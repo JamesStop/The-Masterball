@@ -36,6 +36,40 @@
     background-color: red;
 }
 
+.pokemon-level {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+    border: 2px solid black;
+    box-shadow: 1px 1px 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+}
+
+.level-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.label-level {
+    font-size: 10px;
+    text-align: center;
+}
+
+.level-input {
+    width: 30px;
+    height: 25px;
+    font-size: 15px;
+    text-align: center;
+}
+
 .name-nickname-level-wrapper {
     width: 90%;
     background-color: red;
