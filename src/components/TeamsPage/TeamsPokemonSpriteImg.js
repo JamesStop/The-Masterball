@@ -2,40 +2,36 @@ import React, { useEffect, useState } from 'react';
 import './TeamsPokemonSpriteImg.css';
 import Draggable from 'react-draggable';
 
-
-
-
-function TeamsPokemonSpriteImg({ pokemon, index, defaultPosition }) {
+function TeamsPokemonSpriteImg({ pokemon, index  }) {
 	const [sprite, setSprite] = useState('');
-	let Draggable = require('react-draggable');
+    
 
-    const positioning = {
-			0: {
-				x: 50,
-				y: 0,
-			},
-			1: {
-				x: 97,
-				y: 20,
-			},
-			2: {
-				x: 97,
-				y: 82,
-			},
-			3: {
-				x: 50,
-				y: 102,
-			},
-			4: {
-				x: 0,
-				y: 82,
-			},
-			5: {
-				x: 0,
-				y: 20,
-			},
-		};
-
+	const positioning = {
+		0: {
+			x: 50,
+			y: 0,
+		},
+		1: {
+			x: 97,
+			y: 20,
+		},
+		2: {
+			x: 97,
+			y: 82,
+		},
+		3: {
+			x: 50,
+			y: 102,
+		},
+		4: {
+			x: 0,
+			y: 82,
+		},
+		5: {
+			x: 0,
+			y: 20,
+		},
+	};
 
 	useEffect(() => {
 		fetch(pokemon.formUrl)

@@ -7,38 +7,3 @@
     position: absolute;
 }
 
-[class = '0'] {
-    position: absolute;
-    top: 0;
-    left: 50px;
-}
-
-[class='1'] {
-    position: absolute;
-    top: 20px;
-    right: 5px;
-}
-
-[class='2'] {
-    position: absolute;
-    bottom: 20px;
-    right: 5px;
-}
-
-[class='3'] {
-    position: absolute;
-    bottom: 0;
-    left: 50px;
-}
-
-[class='4'] {
-    position: absolute;
-    bottom: 20px;
-    left: 5px;
-}
-
-[class='5'] {
-    position: absolute;
-    top: 20px;
-    left: 5px;
-}
