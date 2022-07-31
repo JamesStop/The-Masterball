@@ -56,16 +56,19 @@ function PokemonPage(props) {
 			if (Object.keys(pokemonSpecies).length) {
 				return (
 					<div className='pokemon-customizer-wrapper'>
-						<div className='big-info-wrapper'>
-							<div className='naming-wrapper'>
-								<span>{pokemon.name}</span>
+						<section className='big-info-wrapper'>
+							<div className='pokemon-number'>
+								<span>{pokemonSpecies.id}</span>
 							</div>
-							<div className='nickname-wrapper'></div>
-							<div className='level-wrapper'></div>
+							<section className='name-nickname-level-wrapper'>
+								<span>{pokemon.name} /</span>
+								<span>{pokemon.nickName}</span>
+								<span>100</span>
+							</section>
 							<div className='image-wrapper'>
-								<Sprite morePokemonInfo={morePokemonInfo} pokemon={pokemon}/>
+								<Sprite morePokemonInfo={morePokemonInfo} pokemon={pokemon} />
 							</div>
-						</div>
+						</section>
 					</div>
 				);
 			}

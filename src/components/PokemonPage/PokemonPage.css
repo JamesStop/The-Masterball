@@ -16,4 +16,31 @@
     align-items: center;
     border: 2px solid black;
     border-radius: 25px;
+    position: relative;
+}
+
+.pokemon-number {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+    font-size: 20px;
+    border: 2px solid black;
+    box-shadow: 1px 1px 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+}
+
+.name-nickname-level-wrapper {
+    width: 90%;
+    background-color: red;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
