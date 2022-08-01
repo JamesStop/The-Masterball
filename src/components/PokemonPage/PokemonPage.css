@@ -70,11 +70,13 @@
     text-align: center;
 }
 
-.name-nickname-level-wrapper {
-    width: 90%;
+.name-nickname-wrapper {
+    padding: 5px;
+    width: 50%;
     background-color: red;
     height: 50px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }

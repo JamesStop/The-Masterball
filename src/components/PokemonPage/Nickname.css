@@ -1,0 +1,18 @@
+.nickname-form {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+}
+
+.nickname-input {
+    width: 85px;
+    font-size: .7em;
+}
+
+.nickname-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}

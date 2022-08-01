@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './PokemonPage.css';
 import Sprite from './Sprite';
+import Nickname from './Nickname';
 
 function PokemonPage(props) {
 	const [pokemon, setPokemon] = useState({});
@@ -64,9 +65,13 @@ function PokemonPage(props) {
 	};
 
 	const handleLevelChange = async (event) => {
+		event.preventDefault();
 		const newLevel = event.target.value;
 		await setPokemon({ ...pokemon, level: newLevel });
-		
+	};
+
+	const stopRefresh = (event) => {
+		event.preventDefault();
 	};
 
 	if (Object.keys(pokemon).length) {
@@ -79,8 +84,10 @@ function PokemonPage(props) {
 								<span>#{pokemonSpecies.id}</span>
 							</div>
 							<div className='pokemon-level'>
-								<form className='level-form'>
-									<label className='label-level'htmlFor="level">Level</label>
+								<form className='level-form' onSubmit={stopRefresh}>
+									<label className='label-level' htmlFor='level'>
+										Level
+									</label>
 									<input
 										value={pokemon.level}
 										type='number'
@@ -92,9 +99,9 @@ function PokemonPage(props) {
 									/>
 								</form>
 							</div>
-							<section className='name-nickname-level-wrapper'>
-								<span>{pokemon.name} /</span>
-								<span>{pokemon.nickName}</span>
+							<section className='name-nickname-wrapper'>
+								<span>{pokemon.name}, aka:</span>
+								<Nickname pokemon={pokemon} setPokemon={setPokemon} />
 							</section>
 							<div className='image-wrapper'>
 								<Sprite morePokemonInfo={morePokemonInfo} pokemon={pokemon} />

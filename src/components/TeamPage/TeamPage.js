@@ -63,7 +63,7 @@ function TeamPage({ POKE_URL }) {
 						const pokemonName = res.name[0].toUpperCase() + res.name.slice(1)
 						setCreatingPokemon({
 							name: pokemonName,
-							nickName: '',
+							nickname: '',
 							speciesUrl: url,
 							formUrl: res.varieties[0].pokemon.url,
 							level: 1,
