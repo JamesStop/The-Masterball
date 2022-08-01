@@ -6,7 +6,7 @@ import './TeamPage.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-function TeamPage({ POKE_URL }) {
+function TeamPage({ POKE_URL, signedIn }) {
 	const [species, setSpecies] = useState([]);
 	const [team, setTeam] = useState([]);
 	const { id } = useParams();
@@ -15,7 +15,10 @@ function TeamPage({ POKE_URL }) {
 	const getTeam = async () => {
 		try {
 			const response = await axios.get(`http://localhost:1738/api/teams/${id}`);
-			const results = await response.data;
+			let results = {};
+			if (response.data.owner == window.localStorage.getItem('userid')) {
+				results = response.data;
+			}
 			setTeam(results);
 		} catch (error) {
 			console.log(error);
@@ -33,6 +36,10 @@ function TeamPage({ POKE_URL }) {
 		}
 		getTeam();
 	}
+
+	useEffect(() => {
+		getTeam();
+	}, [signedIn]);
 
 	useEffect(() => {
 		fetch(`${POKE_URL}pokemon-species/?limit=905`)
@@ -60,6 +67,7 @@ function TeamPage({ POKE_URL }) {
 					.then((res) => {
 						const pokemonName = res.name[0].toUpperCase() + res.name.slice(1);
 						setCreatingPokemon({
+							owner: window.localStorage.getItem('userid'),
 							name: pokemonName,
 							nickname: pokemonName,
 							speciesUrl: url,

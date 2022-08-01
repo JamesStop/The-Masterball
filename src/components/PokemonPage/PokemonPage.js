@@ -32,7 +32,10 @@ function PokemonPage(props) {
 			const response = await axios.get(
 				`http://localhost:1738/api/pokemon/${id}`
 			);
-			const results = await response.data;
+			let results = {};
+			if (response.data.owner == window.localStorage.getItem('userid')) {
+				results = response.data;
+			}
 			setPokemon(results);
 		} catch (error) {
 			console.log(error);

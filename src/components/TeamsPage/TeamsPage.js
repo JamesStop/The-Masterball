@@ -3,19 +3,25 @@ import React, { useState, useEffect } from 'react';
 import './TeamsPage.css';
 import TeamsDisplaySection from './TeamsDisplaySection';
 
-function TeamsPage(props) {
+function TeamsPage({ signedIn }) {
 	const [teams, setTeams] = useState({});
 	const [newTeamName, setNewTeamName] = useState('');
 
-	async function getTeams() {
+	const getTeams = async () => {
 		try {
 			const response = await axios.get('http://localhost:1738/api/teams');
-			const results = await response.data;
+			const results = await response.data.filter((team) => {
+				return team.owner == window.localStorage.getItem('userid');
+			});
 			setTeams(results);
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	};
+
+	useEffect(() => {
+		getTeams();
+	}, [signedIn]);
 
 	useEffect(() => {
 		getTeams();
@@ -56,6 +62,7 @@ function TeamsPage(props) {
 						y: 20,
 					},
 				},
+				owner: localStorage.getItem('userid'),
 			});
 			setNewTeamName('');
 			getTeams();
@@ -63,8 +70,6 @@ function TeamsPage(props) {
 			console.log(error);
 		}
 	};
-
-
 
 	return (
 		<section className='teams-wrapper'>
@@ -81,7 +86,11 @@ function TeamsPage(props) {
 					<button type='submit'>create new team</button>
 				</form>
 			</section>
-			<TeamsDisplaySection setTeams={setTeams} getTeams={getTeams} teams={teams} />
+			<TeamsDisplaySection
+				setTeams={setTeams}
+				getTeams={getTeams}
+				teams={teams}
+			/>
 		</section>
 	);
 }

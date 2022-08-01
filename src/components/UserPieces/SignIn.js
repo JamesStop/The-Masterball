@@ -18,15 +18,15 @@ function SignIn({ signingIn, setSigningIn, setSignedIn }) {
 				`http://localhost:1738/api/signin`,
 				userInfo
 			);
-            window.localStorage.setItem('token', response.data.token)
+            window.localStorage.setItem('userid', response.data._id);
 		} catch (error) {
 			console.log(error);
 		}
 		setSigningIn(false);
         setSignedIn(
-					!localStorage.getItem('token')
+					!localStorage.getItem('userid')
 						? false
-						: localStorage.getItem('token') == 'undefined'
+						: localStorage.getItem('userid') == 'undefined'
 						? false
 						: true
 				);

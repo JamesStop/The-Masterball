@@ -10,6 +10,7 @@ import SignUp from './components/UserPieces/SignUp';
 import Masterball from './assets/masterball.png';
 import UserDisplay from './components/UserPieces/UserDisplay';
 import { useEffect, useState } from 'react';
+import PleaseSignIn from './components/PleaseSignIn/PleaseSignIn';
 
 function App() {
 	const POKE_URL = 'https://pokeapi.co/api/v2/';
@@ -17,9 +18,9 @@ function App() {
 	const [signingIn, setSigningIn] = useState(false);
 	const [signingUp, setSigningUp] = useState(false);
 	const [signedIn, setSignedIn] = useState(
-		!localStorage.getItem('token')
+		!localStorage.getItem('userid')
 			? false
-			: localStorage.getItem('token') == 'undefined'
+			: localStorage.getItem('userid') == 'undefined'
 			? false
 			: true
 	);
@@ -49,9 +50,28 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Homepage />} />
 					<Route path='/user' />
-					<Route path='/teams/' element={<TeamsPage />} />
-					<Route path='/team/:id' element={<TeamPage POKE_URL={POKE_URL} />} />
-					<Route path='/pokemon/:id' element={<PokemonPage />} />
+					<Route
+						path='/teams/'
+						element={
+							!signedIn ? <PleaseSignIn /> : <TeamsPage signedIn={signedIn} />
+						}
+					/>
+					<Route
+						path='/team/:id'
+						element={
+							!signedIn ? (
+								<PleaseSignIn />
+							) : (
+								<TeamPage signedIn={signedIn} POKE_URL={POKE_URL} />
+							)
+						}
+					/>
+					<Route
+						path='/pokemon/:id'
+						element={
+							!signedIn ? <PleaseSignIn /> : <PokemonPage signedIn={signedIn} />
+						}
+					/>
 				</Routes>
 			</main>
 			<SignIn
