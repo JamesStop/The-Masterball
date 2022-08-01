@@ -14,9 +14,13 @@ import { useEffect, useState } from 'react';
 function App() {
 	const POKE_URL = 'https://pokeapi.co/api/v2/';
 
-	const [signingIn, setSigningIn] = useState(true);
+	const [signingIn, setSigningIn] = useState(false);
 	const [signingUp, setSigningUp] = useState(false);
 	const [signedIn, setSignedIn] = useState(false);
+
+	useEffect(() => {
+		setSignedIn(window.localStorage.getItem('isLoggedIn'))
+	}, [])
 
 	return (
 		<div className='main-wrapper'>
@@ -35,6 +39,7 @@ function App() {
 						setSigningIn={setSigningIn}
 						setSigningUp={setSigningUp}
 						signedIn={signedIn}
+						setSignedIn={setSignedIn}
 					/>
 				</div>
 			</header>
@@ -47,7 +52,11 @@ function App() {
 					<Route path='/pokemon/:id' element={<PokemonPage />} />
 				</Routes>
 			</main>
-			<SignIn signingIn={signingIn} setSigningIn={setSigningIn} />
+			<SignIn
+				signingIn={signingIn}
+				setSigningIn={setSigningIn}
+				setSignedIn={setSignedIn}
+			/>
 			<SignUp signingUp={signingUp} setSigningUp={setSigningUp} />
 		</div>
 	);

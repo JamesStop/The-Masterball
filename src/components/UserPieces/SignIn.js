@@ -1,25 +1,34 @@
 import React from 'react';
 import './SignIn.css';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-function SignIn({ signingIn, setSigningIn }) {
+function SignIn({ signingIn, setSigningIn, setSignedIn }) {
+	const BLANK_USER = {
+		username: '',
+		password: '',
+	};
 
-    const BLANK_USER = {
-        username: '',
-		email: '',
-		password: ''
-	}
+	const [userInfo, setUserInfo] = useState(BLANK_USER);
 
-    const [userInfo, setUserInfo] = useState(BLANK_USER);
-    
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		try {
+			const response = await axios.post(
+				`http://localhost:1738/api/signin`,
+				userInfo
+			);
+		} catch (error) {
+			console.log(error);
+		}
+        window.localStorage.setItem('isLoggedIn', true)
+		setSigningIn(false);
+		setSignedIn(true);
+	};
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-    }
-
-    const handleChange = (event) => {
-        setUserInfo({...userInfo, [event.target.id]: event.target.value})
-    }
+	const handleChange = (event) => {
+		setUserInfo({ ...userInfo, [event.target.id]: event.target.value });
+	};
 
 	if (signingIn) {
 		return (
@@ -33,13 +42,6 @@ function SignIn({ signingIn, setSigningIn }) {
 						type='text'
 						required
 					/>
-					<label htmlFor='email'>email</label>
-					<input
-						onChange={handleChange}
-						value={userInfo.email}
-						type='text'
-						id='email'
-					/>
 					<label htmlFor='password'>password</label>
 					<input
 						onChange={handleChange}
@@ -47,7 +49,7 @@ function SignIn({ signingIn, setSigningIn }) {
 						type='text'
 						id='password'
 					/>
-					<button>Sign In</button>
+					<button className='signin-button'>Sign In</button>
 				</form>
 			</div>
 		);

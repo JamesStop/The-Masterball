@@ -1,10 +1,19 @@
 import React from 'react';
 import './UserDisplay.css';
 
-function UserDisplay({ signingIn, signingUp, signedIn }) {
-	const signIn = () => {};
+function UserDisplay({ setSigningUp, setSigningIn, signedIn, setSignedIn }) {
+	const signIn = () => {
+        setSigningIn(true);
+    };
 
-	const signUp = () => {};
+	const signUp = () => {
+        setSigningUp(true)
+    };
+
+    const signOut = () => {
+        setSignedIn(false)
+        window.localStorage.removeItem('isLoggedIn');
+    }
 
 	if (!signedIn) {
 		return (
@@ -16,7 +25,7 @@ function UserDisplay({ signingIn, signingUp, signedIn }) {
 	} else {
         return (
 					<div className='signed-in-user'>
-						<button></button>
+						<button onClick={signOut}>Sign Out</button>
 					</div>
 				);
     }
