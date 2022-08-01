@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Homepage from './components/Homepage/Homepage';
 import TeamsPage from './components/TeamsPage/TeamsPage';
 import TeamPage from './components/TeamPage/TeamPage';
@@ -25,10 +25,16 @@ function App() {
 			: true
 	);
 
+	const navigate = useNavigate()
+
+	const handleGohome = () => {
+		navigate('/')
+	}
+
 	return (
 		<div className='main-wrapper'>
 			<header className=''>
-				<div className='site-header-logo'>
+				<div className='site-header-logo' onClick={handleGohome}>
 					<img className='masterball-logo' src={Masterball} alt='masterball' />
 					<h1 className='header-title'>
 						<span className='site-heading'>The Masterball:</span>
