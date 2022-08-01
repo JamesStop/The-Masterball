@@ -10,9 +10,9 @@ function TeamPage({ POKE_URL }) {
 	const [species, setSpecies] = useState([]);
 	const [team, setTeam] = useState([]);
 	const { id } = useParams();
-	const [creatingPokemon, setCreatingPokemon] = useState({})
+	const [creatingPokemon, setCreatingPokemon] = useState({});
 
-	const getTeam = async() => {
+	const getTeam = async () => {
 		try {
 			const response = await axios.get(`http://localhost:1738/api/teams/${id}`);
 			const results = await response.data;
@@ -20,7 +20,7 @@ function TeamPage({ POKE_URL }) {
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	};
 
 	async function createPokemon() {
 		try {
@@ -28,7 +28,6 @@ function TeamPage({ POKE_URL }) {
 				`http://localhost:1738/api/pokemon`,
 				creatingPokemon
 			);
-			
 		} catch (error) {
 			console.log(error);
 		}
@@ -45,10 +44,10 @@ function TeamPage({ POKE_URL }) {
 			});
 		getTeam();
 	}, []);
-	
+
 	useEffect(() => {
 		createPokemon();
-	}, [creatingPokemon])
+	}, [creatingPokemon]);
 
 	const handleClick = (event) => {
 		const url = event.target.options[event.target.selectedIndex].value;
@@ -59,8 +58,7 @@ function TeamPage({ POKE_URL }) {
 						return res.json();
 					})
 					.then((res) => {
-
-						const pokemonName = res.name[0].toUpperCase() + res.name.slice(1)
+						const pokemonName = res.name[0].toUpperCase() + res.name.slice(1);
 						setCreatingPokemon({
 							name: pokemonName,
 							nickname: pokemonName,
@@ -70,8 +68,19 @@ function TeamPage({ POKE_URL }) {
 							teamId: id,
 							ability: {
 								name: '',
-								effect: ''
-							}
+								effect: '',
+							},
+							nature: {
+								name: '',
+								increasedStat: {
+									name: '',
+									url: '',
+								},
+								decreasedStat: {
+									name: '',
+									url: '',
+								},
+							},
 						});
 					});
 			}
@@ -237,16 +246,16 @@ function TeamPage({ POKE_URL }) {
 					</div>
 				</section>
 				<section className='team-display-wrapper'>
-				{team.pokemons.map((pokemon, index) => {
-					return (
-						<TeamPokemon
-							getTeam={getTeam}
-							key={pokemon._id}
-							pokemon={pokemon}
-						/>
-					);
-				})}
-			</section>
+					{team.pokemons.map((pokemon, index) => {
+						return (
+							<TeamPokemon
+								getTeam={getTeam}
+								key={pokemon._id}
+								pokemon={pokemon}
+							/>
+						);
+					})}
+				</section>
 			</div>
 		);
 	}

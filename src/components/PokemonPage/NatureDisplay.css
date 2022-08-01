@@ -1,0 +1,17 @@
+.nature-selector {
+    margin-top: 35px;
+}
+
+.nature-info-display {
+    height: 80%;
+    width: 90%;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.decreased-stat {
+    width: 60px;
+}

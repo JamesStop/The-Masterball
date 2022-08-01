@@ -5,6 +5,7 @@ function AbilityDisplay({ morePokemonInfo, pokemon, setPokemon }) {
 	const [editing, setEditing] = useState(false);
 
 	const handleClick = (event) => {
+        event.preventDefault();
 		const url = event.target.options[event.target.selectedIndex].value;
 		if (event.target.value != '#') {
 			fetch(`${url}`)
@@ -47,7 +48,7 @@ function AbilityDisplay({ morePokemonInfo, pokemon, setPokemon }) {
 		if (pokemon.ability.name.length) {
 			return (
 				<div className='ability-info-display'>
-					<span className='ability-name-display'>{pokemon.ability.name}:</span>{' '}
+					<span className='ability-name-display'>{pokemon.ability.name}:</span>
 					<span className='ability-effect-display'>
 						{pokemon.ability.effect}
 					</span>
