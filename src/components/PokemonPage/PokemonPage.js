@@ -4,6 +4,7 @@ import axios from 'axios';
 import './PokemonPage.css';
 import Sprite from './Sprite';
 import Nickname from './Nickname';
+import TeamPokemonTyping from '../TeamPage/TeamPokemonTyping';
 
 function PokemonPage(props) {
 	const [pokemon, setPokemon] = useState({});
@@ -106,6 +107,7 @@ function PokemonPage(props) {
 							<div className='image-wrapper'>
 								<Sprite morePokemonInfo={morePokemonInfo} pokemon={pokemon} />
 							</div>
+							<TeamPokemonTyping formInfo={morePokemonInfo}/>
 						</section>
 					</div>
 				);
