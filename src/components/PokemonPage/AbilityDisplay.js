@@ -44,13 +44,23 @@ function AbilityDisplay({ morePokemonInfo, pokemon, setPokemon }) {
 			</select>
 		);
 	} else {
-		return (
-			<div className='ability-info-display'>
-				<span className='ability-name-display'>{pokemon.ability.name}:</span>{' '}
-				<span className='ability-effect-display'>{pokemon.ability.effect}</span>
-				<button onClick={editMode}>Change</button>
-			</div>
-		);
+		if (pokemon.ability.name.length) {
+			return (
+				<div className='ability-info-display'>
+					<span className='ability-name-display'>{pokemon.ability.name}:</span>{' '}
+					<span className='ability-effect-display'>
+						{pokemon.ability.effect}
+					</span>
+					<button onClick={editMode}>Change</button>
+				</div>
+			);
+		} else {
+			return (
+				<div className='ability-info-display'>
+					<button onClick={editMode}>Select</button>
+				</div>
+			);
+		}
 	}
 }
 
