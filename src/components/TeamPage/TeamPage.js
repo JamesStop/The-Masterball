@@ -63,11 +63,15 @@ function TeamPage({ POKE_URL }) {
 						const pokemonName = res.name[0].toUpperCase() + res.name.slice(1)
 						setCreatingPokemon({
 							name: pokemonName,
-							nickname: '',
+							nickname: pokemonName,
 							speciesUrl: url,
 							formUrl: res.varieties[0].pokemon.url,
 							level: 1,
 							teamId: id,
+							ability: {
+								name: '',
+								effect: ''
+							}
 						});
 					});
 			}

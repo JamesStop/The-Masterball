@@ -5,6 +5,8 @@ import './PokemonPage.css';
 import Sprite from './Sprite';
 import Nickname from './Nickname';
 import TeamPokemonTyping from '../TeamPage/TeamPokemonTyping';
+import AbilityDisplay from './AbilityDisplay';
+import NatureDisplay from './NatureDisplay';
 
 function PokemonPage(props) {
 	const [pokemon, setPokemon] = useState({});
@@ -107,8 +109,27 @@ function PokemonPage(props) {
 							<div className='image-wrapper'>
 								<Sprite morePokemonInfo={morePokemonInfo} pokemon={pokemon} />
 							</div>
-							<TeamPokemonTyping formInfo={morePokemonInfo}/>
+							<TeamPokemonTyping formInfo={morePokemonInfo} />
 						</section>
+						<section className='ability-nature-wrapper'>
+							<section className='ability-wrapper'>
+								<span className='underlined'>Ability Info:</span>
+								<AbilityDisplay
+									morePokemonInfo={morePokemonInfo}
+									pokemon={pokemon}
+									setPokemon={setPokemon}
+								/>
+							</section>
+							<section className='nature-wrapper'>
+								<span className='underlined'>Nature Info:</span>
+								<NatureDisplay
+									morePokemonInfo={morePokemonInfo}
+									pokemon={pokemon}
+									setPokemon={setPokemon}
+								/>
+							</section>
+						</section>
+						<section></section>
 					</div>
 				);
 			}
