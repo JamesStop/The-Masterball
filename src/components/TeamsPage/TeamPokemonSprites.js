@@ -16,6 +16,7 @@ function TeamPokemonSprites({ team }) {
 					{teamInfo.pokemons.map((pokemon, index) => {
 						return (
 							<TeamsPokemonSpriteImg
+								position={teamInfo.positioning[index]}
 								team={team}
 								index={index}
 								key={pokemon._id}

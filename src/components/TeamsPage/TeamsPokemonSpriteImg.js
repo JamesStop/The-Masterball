@@ -4,12 +4,12 @@ import Draggable from 'react-draggable';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-function TeamsPokemonSpriteImg({ team, pokemon, index  }) {
+function TeamsPokemonSpriteImg({ team, pokemon, index, position  }) {
 	const [sprite, setSprite] = useState('');
     const [positions, setPositions] = useState({})
 	const {id} = useParams();
 	const positionValue = index
-	
+	console.log(position)
 
 	useEffect(() => {
 		fetch(pokemon.formUrl)
