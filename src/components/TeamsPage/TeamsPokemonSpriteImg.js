@@ -9,7 +9,6 @@ function TeamsPokemonSpriteImg({ team, pokemon, index, position  }) {
     const [positions, setPositions] = useState({})
 	const {id} = useParams();
 	const positionValue = index
-	console.log(position)
 
 	useEffect(() => {
 		fetch(pokemon.formUrl)
@@ -30,7 +29,6 @@ function TeamsPokemonSpriteImg({ team, pokemon, index, position  }) {
 		arrayChange.forEach((string) => {
 			noPxArray.push(parseInt(string.slice(0, -2)));
 		})
-		console.log(noPxArray)
 		setPositions({
 			...positions,
 			[positionValue]: {

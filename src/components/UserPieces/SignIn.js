@@ -18,12 +18,18 @@ function SignIn({ signingIn, setSigningIn, setSignedIn }) {
 				`http://localhost:1738/api/signin`,
 				userInfo
 			);
+            window.localStorage.setItem('token', response.data.token)
 		} catch (error) {
 			console.log(error);
 		}
-        window.localStorage.setItem('isLoggedIn', true)
 		setSigningIn(false);
-		setSignedIn(true);
+        setSignedIn(
+					!localStorage.getItem('token')
+						? false
+						: localStorage.getItem('token') == 'undefined'
+						? false
+						: true
+				);
 	};
 
 	const handleChange = (event) => {

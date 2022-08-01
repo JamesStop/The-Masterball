@@ -12,7 +12,7 @@ function UserDisplay({ setSigningUp, setSigningIn, signedIn, setSignedIn }) {
 
     const signOut = () => {
         setSignedIn(false)
-        window.localStorage.removeItem('isLoggedIn');
+        window.localStorage.removeItem('token');
     }
 
 	if (!signedIn) {

@@ -16,11 +16,13 @@ function App() {
 
 	const [signingIn, setSigningIn] = useState(false);
 	const [signingUp, setSigningUp] = useState(false);
-	const [signedIn, setSignedIn] = useState(false);
-
-	useEffect(() => {
-		setSignedIn(window.localStorage.getItem('isLoggedIn'))
-	}, [])
+	const [signedIn, setSignedIn] = useState(
+		!localStorage.getItem('token')
+			? false
+			: localStorage.getItem('token') == 'undefined'
+			? false
+			: true
+	);
 
 	return (
 		<div className='main-wrapper'>
