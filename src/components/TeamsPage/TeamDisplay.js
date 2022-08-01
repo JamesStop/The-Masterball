@@ -27,8 +27,8 @@ function TeamDisplay({ team, getTeams }) {
 	return (
 		<div className='teams-team-display-wrapper'>
 			<span>{team.name}</span>
-			<TeamPokemonSprites team={team}/>
-			
+			<TeamPokemonSprites getTeams={getTeams} team={team} />
+
 			<section className='team-buttons-wrapper'>
 				<button onClick={handleEditTeam}>edit</button>
 				<button onClick={deleteTeam}>delete</button>

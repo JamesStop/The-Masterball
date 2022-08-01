@@ -14,7 +14,14 @@ function TeamPokemonSprites({ team }) {
 			return (
 				<section className='pokemon-sprites-wrapper'>
 					{teamInfo.pokemons.map((pokemon, index) => {
-						return <TeamsPokemonSpriteImg index={index} key={pokemon._id} pokemon={pokemon} />;
+						return (
+							<TeamsPokemonSpriteImg
+								team={team}
+								index={index}
+								key={pokemon._id}
+								pokemon={pokemon}
+							/>
+						);
 					})}
 				</section>
 			);

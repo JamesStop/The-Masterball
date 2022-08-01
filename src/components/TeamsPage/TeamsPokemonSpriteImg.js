@@ -1,37 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './TeamsPokemonSpriteImg.css';
 import Draggable from 'react-draggable';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-function TeamsPokemonSpriteImg({ pokemon, index  }) {
+function TeamsPokemonSpriteImg({ team, pokemon, index  }) {
 	const [sprite, setSprite] = useState('');
-    
-
-	const positioning = {
-		0: {
-			x: 50,
-			y: 0,
-		},
-		1: {
-			x: 97,
-			y: 20,
-		},
-		2: {
-			x: 97,
-			y: 82,
-		},
-		3: {
-			x: 50,
-			y: 102,
-		},
-		4: {
-			x: 0,
-			y: 82,
-		},
-		5: {
-			x: 0,
-			y: 20,
-		},
-	};
+    const [positions, setPositions] = useState({})
+	const {id} = useParams();
+	const positionValue = index
+	
 
 	useEffect(() => {
 		fetch(pokemon.formUrl)
@@ -42,14 +20,50 @@ function TeamsPokemonSpriteImg({ pokemon, index  }) {
 				const spriteUrl = res.sprites.front_default;
 				setSprite(spriteUrl);
 			});
+		setPositions(team.positioning)
 	}, []);
 
+	const handleStop = (event) => {
+		console.log(positionValue)
+		const arrayChange = event.target.style.transform.slice(10).slice(0, -1).split(', ');
+		const noPxArray = []
+		arrayChange.forEach((string) => {
+			noPxArray.push(parseInt(string.slice(0, -2)));
+		})
+		console.log(noPxArray)
+		setPositions({
+			...positions,
+			[positionValue]: {
+				x: noPxArray[0],
+				y: noPxArray[1],
+			},
+		});
+		// setPositions({...positions, index: event.target.style})
+	}
+
+	const updateTeam = async () => {
+		try {
+			const response = await axios.patch(
+				`http://localhost:1738/api/teams/${id}`,
+				{ ...team, positioning: positions }
+			);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	useEffect(() => {
+		updateTeam()
+	}, [positions])
+
 	if (sprite.length) {
-		return (
-			<Draggable bounds='parent' defaultPosition={positioning[index]}>
-				<img className={`pokemon-sprite-img`} src={sprite} alt='' />
-			</Draggable>
-		);
+		if (positions) {
+			return (
+				<Draggable bounds='parent' defaultPosition={positions[index]} onStop={handleStop}>
+					<img className={`pokemon-sprite-img`} src={sprite} alt='' />
+				</Draggable>
+			);
+		}
 	} else {
 		return <div></div>;
 	}
