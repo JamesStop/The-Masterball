@@ -17,6 +17,7 @@ function UserDisplay({ setSigningUp, setSigningIn, signedIn, setSignedIn }) {
     const signOut = () => {
         setSignedIn(false)
         window.localStorage.removeItem('userid');
+		window.localStorage.removeItem('username');
     }
 
 	const goToTeams = () => {

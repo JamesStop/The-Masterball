@@ -3,12 +3,21 @@ import './PokemonStats.css';
 
 function PokemonStats({ pokemon, stat, index, morePokemonInfo }) {
 	const [thisStat, setThisStat] = useState(pokemon.stats[stat]);
+	const [stateName, setStatName] = useState(stat)
+
 
 	useEffect(() => {
 		setThisStat({
 			...thisStat,
 			base: morePokemonInfo.stats[index]['base_stat'],
 		});
+		let newName = stat
+		if (stat[0] == 's') {
+			if (stat[1] == 'a' || stat[1] == 'd') {
+				newName = stat[0] + 'p. ' + stat.slice(1)
+			}
+		}
+		setStatName(newName)
 	}, []);
 
     const handleSubmit = (event) => {
@@ -24,7 +33,9 @@ function PokemonStats({ pokemon, stat, index, morePokemonInfo }) {
         let numbers = event.target.value
         const id = event.target.id
         const max = event.target.max
-        console.log(numbers)
+		if (numbers == '') {
+			numbers = 0
+		}
         if (numbers > max) {
             numbers = max
         }
@@ -33,7 +44,7 @@ function PokemonStats({ pokemon, stat, index, morePokemonInfo }) {
 
 	return (
 		<div className='big-stat-wrapper'>
-			<span className='stat-name'>{stat}:</span>
+			<span className='stat-name'>{stateName}:</span>
 			<section className='stat-wrapper'>
 				<section className='stat-base-wrapper'>
 					<span>Base:</span>
@@ -50,7 +61,6 @@ function PokemonStats({ pokemon, stat, index, morePokemonInfo }) {
 							type='number'
 							min={0}
 							max={31}
-							valueAsNumber
 						/>
 					</form>
 				</section>
@@ -69,7 +79,6 @@ function PokemonStats({ pokemon, stat, index, morePokemonInfo }) {
 							type='number'
 							min={0}
 							max={255}
-							valueAsNumber
 						/>
 					</form>
 				</section>
