@@ -4,7 +4,31 @@ import './PokemonStats.css';
 function PokemonStats({ morePokemonInfo, pokemon, setPokemon, stat, index }) {
 	const [thisStat, setThisStat] = useState(pokemon.stats[stat]);
 	const [statName, setStatName] = useState(stat);
+	const [evAvailable, setEvAvailable] = useState(
+		510 -
+			parseInt(
+				pokemon.stats.health.ev +
+				pokemon.stats.attack.ev +
+				pokemon.stats.defense.ev +
+				pokemon.stats.sattack.ev +
+				pokemon.stats.sdefense.ev +
+				pokemon.stats.speed.ev
+			)
+	);
 
+	useEffect(() => {
+		setEvAvailable(
+			510 -
+				parseInt(
+					pokemon.stats.health.ev +
+						pokemon.stats.attack.ev +
+						pokemon.stats.defense.ev +
+						pokemon.stats.sattack.ev +
+						pokemon.stats.sdefense.ev +
+						pokemon.stats.speed.ev
+				)
+		);
+	}, [pokemon.stats])
 
 
 	useEffect(() => {
@@ -49,7 +73,7 @@ function PokemonStats({ morePokemonInfo, pokemon, setPokemon, stat, index }) {
 		if (numbers == '') {
 			numbers = 0;
 		}
-		if (numbers > max) {
+		if (parseInt(numbers) > max) {
 			numbers = max;
 		}
 		setThisStat({ ...thisStat, [id]: parseInt(numbers) });
@@ -91,7 +115,7 @@ function PokemonStats({ morePokemonInfo, pokemon, setPokemon, stat, index }) {
 							onChange={handleChange}
 							type='number'
 							min={0}
-							max={255}
+							max={evAvailable >= 255 ? 255 : (evAvailable + thisStat.ev)}
 						/>
 					</form>
 				</section>
