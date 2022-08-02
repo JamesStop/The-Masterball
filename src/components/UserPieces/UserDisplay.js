@@ -25,6 +25,7 @@ function UserDisplay({ setSigningUp, setSigningIn, signedIn, setSignedIn }) {
 	} else {
         return (
 					<div className='signed-in-user'>
+						<div className='user'><span>{localStorage.getItem('username')}</span></div>
 						<button onClick={signOut}>Sign Out</button>
 					</div>
 				);

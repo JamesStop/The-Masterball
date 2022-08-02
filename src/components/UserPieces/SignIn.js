@@ -19,6 +19,7 @@ function SignIn({ signingIn, setSigningIn, setSignedIn }) {
 				userInfo
 			);
             window.localStorage.setItem('userid', response.data._id);
+			window.localStorage.setItem('username', response.data.username)
 		} catch (error) {
 			console.log(error);
 		}
@@ -46,6 +47,8 @@ function SignIn({ signingIn, setSigningIn, setSignedIn }) {
 						value={userInfo.username}
 						id='username'
 						type='text'
+						minLength={1}
+						maxLength={7}
 						required
 					/>
 					<label htmlFor='password'>password</label>
@@ -54,6 +57,8 @@ function SignIn({ signingIn, setSigningIn, setSignedIn }) {
 						value={userInfo.password}
 						type='text'
 						id='password'
+						minLength={1}
+						maxLength={20}
 					/>
 					<button className='signin-button'>Sign In</button>
 				</form>

@@ -39,13 +39,15 @@ function SignUp({ signingUp, setSigningUp }) {
 						value={userInfo.username}
 						id='username'
 						type='text'
+						minLength={1}
+						maxLength={7}
 						required
 					/>
 					<label htmlFor='email'>email</label>
 					<input
 						onChange={handleChange}
 						value={userInfo.email}
-						type='text'
+						type='email'
 						id='email'
 					/>
 					<label htmlFor='password'>password</label>
@@ -54,6 +56,8 @@ function SignUp({ signingUp, setSigningUp }) {
 						value={userInfo.password}
 						type='text'
 						id='password'
+						minLength={1}
+						maxLength={20}
 					/>
 					<button className='signup-button'>Sign Up</button>
 				</form>
