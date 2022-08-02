@@ -27,7 +27,8 @@ function Nickname({ pokemon, setPokemon }) {
 					value={pokemon.nickname}
 					onChange={handleChange}
 					type='text'
-					maxLength='10'
+					minLength={1}
+					maxLength={10}
 				/>
 				<button type='submit'>submit</button>
 			</form>

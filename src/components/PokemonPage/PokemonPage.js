@@ -106,7 +106,7 @@ function PokemonPage(props) {
 								</form>
 							</div>
 							<section className='name-nickname-wrapper'>
-								<span>{pokemon.name}, aka:</span>
+								<span className='pokemon-name'>{pokemon.name}, aka:</span>
 								<Nickname pokemon={pokemon} setPokemon={setPokemon} />
 							</section>
 							<div className='image-wrapper'>

@@ -1,7 +1,11 @@
 import React from 'react';
 import './UserDisplay.css';
+import { useNavigate } from 'react-router-dom';
 
 function UserDisplay({ setSigningUp, setSigningIn, signedIn, setSignedIn }) {
+
+	const navigate = useNavigate()
+
 	const signIn = () => {
         setSigningIn(true);
     };
@@ -15,6 +19,10 @@ function UserDisplay({ setSigningUp, setSigningIn, signedIn, setSignedIn }) {
         window.localStorage.removeItem('userid');
     }
 
+	const goToTeams = () => {
+		navigate('/teams')
+	}
+
 	if (!signedIn) {
 		return (
 			<div className='signed-out-user'>
@@ -25,7 +33,7 @@ function UserDisplay({ setSigningUp, setSigningIn, signedIn, setSignedIn }) {
 	} else {
         return (
 					<div className='signed-in-user'>
-						<div className='user'><span>{localStorage.getItem('username')}</span></div>
+						<div className='user' onClick={goToTeams} ><span>{localStorage.getItem('username')}</span></div>
 						<button onClick={signOut}>Sign Out</button>
 					</div>
 				);

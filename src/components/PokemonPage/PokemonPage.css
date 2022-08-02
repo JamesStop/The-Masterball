@@ -85,6 +85,11 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    position: relative;
+}
+
+.pokemon-name {
+    height: 50%;
 }
 
 .ability-nature-wrapper {
