@@ -7,7 +7,7 @@ import axios from 'axios';
 function TeamsPokemonSpriteImg({ team, pokemon, index, position  }) {
 	const [sprite, setSprite] = useState('');
     const [positions, setPositions] = useState({})
-	const {id} = useParams();
+	const id = team._id;
 	const positionValue = index
 
 	useEffect(() => {
@@ -22,21 +22,20 @@ function TeamsPokemonSpriteImg({ team, pokemon, index, position  }) {
 		setPositions(team.positioning)
 	}, []);
 
-	const handleStop = (event) => {
-		console.log(positionValue)
-		const arrayChange = event.target.style.transform.slice(10).slice(0, -1).split(', ');
+	const handleStop = async(event) => {
+		const arrayChange = await event.target.style.transform.slice(10).slice(0, -1).split(', ');
 		const noPxArray = []
-		arrayChange.forEach((string) => {
+		await arrayChange.forEach((string) => {
 			noPxArray.push(parseInt(string.slice(0, -2)));
 		})
-		setPositions({
+		await setPositions({
 			...positions,
 			[positionValue]: {
 				x: noPxArray[0],
 				y: noPxArray[1],
 			},
 		});
-		// setPositions({...positions, index: event.target.style})
+		updateTeam()
 	}
 
 	const updateTeam = async () => {

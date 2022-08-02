@@ -11,6 +11,7 @@ import PokemonStats from './PokemonStats';
 
 function PokemonPage(props) {
 	const [pokemon, setPokemon] = useState({});
+	const [urls, setUrls] = useState({});
 	const { id } = useParams();
 	const [morePokemonInfo, setMorePokemonInfo] = useState({});
 	const [pokemonSpecies, setPokemonSpecies] = useState({});
@@ -20,11 +21,11 @@ function PokemonPage(props) {
 	}, []);
 
 	useEffect(() => {
-		if (pokemon._id) {
+		if (urls.speciesUrl && urls.formUrl) {
 			getMoreInfo();
 		}
 		updatePokemon();
-	}, [pokemon.formUrl]);
+	}, [urls]);
 
 	useEffect(() => {
 		const stats = morePokemonInfo.stats;
@@ -54,20 +55,21 @@ function PokemonPage(props) {
 				results = response.data;
 			}
 			setPokemon(results);
+			setUrls({ speciesUrl: results.speciesUrl, formUrl: results.formUrl });
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
 	const getMoreInfo = () => {
-		fetch(`${pokemon.formUrl}`)
+		fetch(`${urls.formUrl}`)
 			.then((res) => {
 				return res.json();
 			})
 			.then((res) => {
 				setMorePokemonInfo(res);
 			});
-		fetch(`${pokemon.speciesUrl}`)
+		fetch(`${urls.speciesUrl}`)
 			.then((res) => {
 				return res.json();
 			})
@@ -88,13 +90,16 @@ function PokemonPage(props) {
 	};
 
 	useEffect(() => {
-		updatePokemon()
-	}, [pokemon])
+		updatePokemon();
+	}, [pokemon]);
 
 	const handleLevelChange = async (event) => {
 		event.preventDefault();
 		let newLevel = event.target.value;
 		const max = event.target.max;
+		if (newLevel < 1) {
+			newLevel = 1;
+		}
 		if (newLevel > max) {
 			newLevel = max;
 		}
