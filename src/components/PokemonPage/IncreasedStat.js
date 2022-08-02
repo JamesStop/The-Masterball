@@ -8,7 +8,7 @@ function IncreasedStat({ pokemon }) {
 			<div className='increased-stat'>{pokemon.nature.increasedStat.name}</div>
 		);
 	} else {
-		return <div className='decreased-stat'>N/A</div>;
+		return <div className='increased-stat'>N/A</div>;
 	}
 }
 

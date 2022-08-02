@@ -89,6 +89,50 @@ function TeamPage({ POKE_URL, signedIn }) {
 									url: '',
 								},
 							},
+							stats: {
+								health: {
+									base: 0,
+									nature: false,
+									iv: 0,
+									ev: 0,
+									total: 0,
+								},
+								attack: {
+									base: 0,
+									nature: false,
+									iv: 0,
+									ev: 0,
+									total: 0,
+								},
+								defense: {
+									base: 0,
+									nature: false,
+									iv: 0,
+									ev: 0,
+									total: 0,
+								},
+								sattack: {
+									base: 0,
+									nature: false,
+									iv: 0,
+									ev: 0,
+									total: 0,
+								},
+								sdefense: {
+									base: 0,
+									nature: false,
+									iv: 0,
+									ev: 0,
+									total: 0,
+								},
+								speed: {
+									base: 0,
+									nature: false,
+									iv: 0,
+									ev: 0,
+									total: 0,
+								},
+							},
 						});
 					});
 			}

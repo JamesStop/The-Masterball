@@ -106,7 +106,7 @@ function PokemonPage(props) {
 								</form>
 							</div>
 							<section className='name-nickname-wrapper'>
-								<span className='pokemon-name'>{pokemon.name}, aka:</span>
+								<span className='pokemon-customization-name'>{pokemon.name}, aka:</span>
 								<Nickname pokemon={pokemon} setPokemon={setPokemon} />
 							</section>
 							<div className='image-wrapper'>
@@ -131,6 +131,9 @@ function PokemonPage(props) {
 									setPokemon={setPokemon}
 								/>
 							</section>
+						</section>
+						<section className='stats-wrapper'>
+
 						</section>
 						<section></section>
 					</div>
