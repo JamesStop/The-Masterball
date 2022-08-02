@@ -43,6 +43,7 @@ function SignIn({ signingIn, setSigningIn, setSignedIn }) {
 				<form className='signin-form' onSubmit={handleSubmit}>
 					<label htmlFor='username'>Username</label>
 					<input
+						className='input-margin-bottom'
 						onChange={handleChange}
 						value={userInfo.username}
 						id='username'
@@ -53,6 +54,7 @@ function SignIn({ signingIn, setSigningIn, setSignedIn }) {
 					/>
 					<label htmlFor='password'>password</label>
 					<input
+						className='input-margin-bottom'
 						onChange={handleChange}
 						value={userInfo.password}
 						type='text'

@@ -7,6 +7,7 @@ import Nickname from './Nickname';
 import TeamPokemonTyping from '../TeamPage/TeamPokemonTyping';
 import AbilityDisplay from './AbilityDisplay';
 import NatureDisplay from './NatureDisplay';
+import PokemonStats from './PokemonStats';
 
 function PokemonPage(props) {
 	const [pokemon, setPokemon] = useState({});
@@ -25,7 +26,26 @@ function PokemonPage(props) {
 		updatePokemon();
 	}, [pokemon]);
 
-	useEffect(() => {}, [morePokemonInfo]);
+	useEffect(() => {
+		const stats = morePokemonInfo.stats
+		console.log(morePokemonInfo.stats);
+		if (pokemon.stats) {
+			if (pokemon.stats.health) {
+				if (morePokemonInfo[0]) {
+					
+					setPokemon({
+						...pokemon,
+						stats: {
+							health: {
+								
+								base: 10,
+							},
+						},
+					});
+				}
+			}
+		}
+	}, [morePokemonInfo]);
 
 	const getPokemon = async () => {
 		try {
@@ -72,8 +92,12 @@ function PokemonPage(props) {
 
 	const handleLevelChange = async (event) => {
 		event.preventDefault();
-		const newLevel = event.target.value;
-		await setPokemon({ ...pokemon, level: newLevel });
+		let newLevel = event.target.value;
+		const max = event.target.max;
+		if (newLevel > max) {
+			newLevel = max
+		}
+		await setPokemon({ ...pokemon, level: parseInt(newLevel) });
 	};
 
 	const stopRefresh = (event) => {
@@ -106,7 +130,9 @@ function PokemonPage(props) {
 								</form>
 							</div>
 							<section className='name-nickname-wrapper'>
-								<span className='pokemon-customization-name'>{pokemon.name}, aka:</span>
+								<span className='pokemon-customization-name'>
+									{pokemon.name}, aka:
+								</span>
 								<Nickname pokemon={pokemon} setPokemon={setPokemon} />
 							</section>
 							<div className='image-wrapper'>
@@ -133,9 +159,19 @@ function PokemonPage(props) {
 							</section>
 						</section>
 						<section className='stats-wrapper'>
-
+							<span className='stats-title'>Stats:</span>
+							{Object.keys(pokemon.stats).map((stat, index) => {
+								return (
+									<PokemonStats
+										key={stat}
+										pokemon={pokemon}
+										stat={stat}
+										index={index}
+										morePokemonInfo={morePokemonInfo}
+									/>
+								);
+							})}
 						</section>
-						<section></section>
 					</div>
 				);
 			}

@@ -35,6 +35,7 @@ function SignUp({ signingUp, setSigningUp }) {
 				<form className='signup-form' onSubmit={handleSubmit}>
 					<label htmlFor='username'>Username</label>
 					<input
+						className='input-margin-bottom'
 						onChange={handleChange}
 						value={userInfo.username}
 						id='username'
@@ -45,6 +46,7 @@ function SignUp({ signingUp, setSigningUp }) {
 					/>
 					<label htmlFor='email'>email</label>
 					<input
+						className='input-margin-bottom'
 						onChange={handleChange}
 						value={userInfo.email}
 						type='email'
@@ -52,6 +54,7 @@ function SignUp({ signingUp, setSigningUp }) {
 					/>
 					<label htmlFor='password'>password</label>
 					<input
+						className='input-margin-bottom'
 						onChange={handleChange}
 						value={userInfo.password}
 						type='text'
