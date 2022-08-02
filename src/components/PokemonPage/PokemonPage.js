@@ -24,20 +24,17 @@ function PokemonPage(props) {
 			getMoreInfo();
 		}
 		updatePokemon();
-	}, [pokemon]);
+	}, [pokemon.formUrl]);
 
 	useEffect(() => {
-		const stats = morePokemonInfo.stats
-		console.log(morePokemonInfo.stats);
+		const stats = morePokemonInfo.stats;
 		if (pokemon.stats) {
 			if (pokemon.stats.health) {
 				if (morePokemonInfo[0]) {
-					
 					setPokemon({
 						...pokemon,
 						stats: {
 							health: {
-								
 								base: 10,
 							},
 						},
@@ -90,12 +87,16 @@ function PokemonPage(props) {
 		}
 	};
 
+	useEffect(() => {
+		updatePokemon()
+	}, [pokemon])
+
 	const handleLevelChange = async (event) => {
 		event.preventDefault();
 		let newLevel = event.target.value;
 		const max = event.target.max;
 		if (newLevel > max) {
-			newLevel = max
+			newLevel = max;
 		}
 		await setPokemon({ ...pokemon, level: parseInt(newLevel) });
 	};
@@ -160,17 +161,24 @@ function PokemonPage(props) {
 						</section>
 						<section className='stats-wrapper'>
 							<span className='stats-title'>Stats:</span>
-							{Object.keys(pokemon.stats).map((stat, index) => {
-								return (
-									<PokemonStats
-										key={stat}
-										pokemon={pokemon}
-										stat={stat}
-										index={index}
-										morePokemonInfo={morePokemonInfo}
-									/>
-								);
-							})}
+							{morePokemonInfo.stats ? (
+								Object.keys(pokemon.stats).map((stat, index) => {
+									return morePokemonInfo.stats[index] ? (
+										<PokemonStats
+											key={stat}
+											pokemon={pokemon}
+											stat={stat}
+											index={index}
+											morePokemonInfo={morePokemonInfo}
+											setPokemon={setPokemon}
+										/>
+									) : (
+										<div> hi</div>
+									);
+								})
+							) : (
+								<div>bye</div>
+							)}
 						</section>
 					</div>
 				);

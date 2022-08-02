@@ -1,50 +1,63 @@
 import React, { useEffect, useInsertionEffect, useState } from 'react';
 import './PokemonStats.css';
 
-function PokemonStats({ pokemon, stat, index, morePokemonInfo }) {
+function PokemonStats({ morePokemonInfo, pokemon, setPokemon, stat, index }) {
 	const [thisStat, setThisStat] = useState(pokemon.stats[stat]);
-	const [stateName, setStatName] = useState(stat)
+	const [statName, setStatName] = useState(stat);
+
 
 
 	useEffect(() => {
 		setThisStat({
 			...thisStat,
-			base: morePokemonInfo.stats[index]['base_stat'],
+			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
 		});
-		let newName = stat
+		let newName = stat;
 		if (stat[0] == 's') {
 			if (stat[1] == 'a' || stat[1] == 'd') {
-				newName = stat[0] + 'p. ' + stat.slice(1)
+				newName = stat[0] + 'p. ' + stat.slice(1);
 			}
 		}
-		setStatName(newName)
+		setStatName(newName);
+		if (pokemon.nature.increasedStat.name == statName) {
+			setThisStat({ ...thisStat, nature: 1 });
+		}
+		if (pokemon.nature.decreasedStat.name == statName) {
+			setThisStat({ ...thisStat, nature: -1 });
+		}
+		updatePokemon();
 	}, []);
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-    }
+	const updatePokemon = () => {
+		setPokemon({ ...pokemon, stats: { ...pokemon.stats, [stat]: thisStat } });
+	}
 
-    useEffect(() => {
+	useEffect(() => {
+		updatePokemon()
+	}, [thisStat]);
 
-    }, [thisStat.base, thisStat.nature, thisStat.iv])
-    
+	const handleSubmit = (event) => {
+		event.preventDefault();
+	};
 
-    const handleChange = (event) => {
-        let numbers = event.target.value
-        const id = event.target.id
-        const max = event.target.max
+	useEffect(() => {}, [thisStat.base, thisStat.nature, thisStat.iv]);
+
+	const handleChange = (event) => {
+		let numbers = event.target.value;
+		const id = event.target.id;
+		const max = event.target.max;
 		if (numbers == '') {
-			numbers = 0
+			numbers = 0;
 		}
-        if (numbers > max) {
-            numbers = max
-        }
-        setThisStat({...thisStat, [id]: parseInt(numbers)})
-    }
+		if (numbers > max) {
+			numbers = max;
+		}
+		setThisStat({ ...thisStat, [id]: parseInt(numbers) });
+	};
 
 	return (
 		<div className='big-stat-wrapper'>
-			<span className='stat-name'>{stateName}:</span>
+			<span className='stat-name'>{statName}:</span>
 			<section className='stat-wrapper'>
 				<section className='stat-base-wrapper'>
 					<span>Base:</span>
