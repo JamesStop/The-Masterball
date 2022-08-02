@@ -10,7 +10,7 @@ function DecreasedStat({ pokemon }) {
 			</span>
 		);
 	} else {
-		return <span className='decreased-stat'>no stat decrease</span>;
+		return <span className='decreased-stat'>N/A</span>;
 	}
 }
 

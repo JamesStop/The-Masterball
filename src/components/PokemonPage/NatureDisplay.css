@@ -13,5 +13,17 @@
 }
 
 .decreased-stat {
-    width: 60px;
+    width: 80px;
+    border: 3px solid red;
+    text-align: center;
+    border-radius:50px;
+    background-color: #c0c0c0;
+}
+
+.increased-stat {
+    width: 80px;
+    border: 3px solid green;
+    text-align: center;
+    border-radius: 50px;
+    background-color: #c0c0c0;
 }

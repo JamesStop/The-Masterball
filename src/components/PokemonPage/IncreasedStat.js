@@ -4,9 +4,11 @@ function IncreasedStat({ pokemon }) {
 	
 
 	if (pokemon.nature.increasedStat) {
-		return <div>{pokemon.nature.increasedStat.name}</div>;
+		return (
+			<div className='increased-stat'>{pokemon.nature.increasedStat.name}</div>
+		);
 	} else {
-		return <div>no stat increase</div>;
+		return <div className='decreased-stat'>N/A</div>;
 	}
 }
 
