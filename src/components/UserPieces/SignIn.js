@@ -49,7 +49,7 @@ function SignIn({ signingIn, setSigningIn, setSignedIn }) {
 						id='username'
 						type='text'
 						minLength={1}
-						maxLength={7}
+						maxLength={10}
 						required
 					/>
 					<label htmlFor='password'>password</label>

@@ -41,7 +41,7 @@ function SignUp({ signingUp, setSigningUp }) {
 						id='username'
 						type='text'
 						minLength={1}
-						maxLength={7}
+						maxLength={10}
 						required
 					/>
 					<label htmlFor='email'>email</label>
