@@ -37,10 +37,6 @@ function PokemonStatAttack({
 	}, [health.ev, attack.ev, defense.ev, sattack.ev, sdefense.ev, speed.ev]);
 
 	const firstload = () => {
-		setAttack({
-			...attack,
-			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
-		});
 		let newName = stat;
 		if (stat[0] == 's') {
 			if (stat[1] == 'a' || stat[1] == 'd') {
@@ -56,13 +52,6 @@ function PokemonStatAttack({
 	}, []);
 
 
-
-	useEffect(() => {
-		setAttack({
-			...attack,
-			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
-		});
-	}, [morePokemonInfo]);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();

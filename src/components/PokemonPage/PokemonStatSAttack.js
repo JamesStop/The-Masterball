@@ -40,10 +40,6 @@ function PokemonStatSAttack({
 
 
 	const firstload = () => {
-		setSattack({
-			...sattack,
-			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
-		});
 		let newName = stat;
 		if (stat[0] == 's') {
 			if (stat[1] == 'a' || stat[1] == 'd') {
@@ -60,12 +56,7 @@ function PokemonStatSAttack({
 
 
 
-	useEffect(() => {
-		setSattack({
-			...sattack,
-			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
-		});
-	}, [morePokemonInfo]);
+
 
 	const handleSubmit = (event) => {
 		event.preventDefault();

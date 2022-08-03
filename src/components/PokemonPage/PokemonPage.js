@@ -344,6 +344,7 @@ function PokemonPage(props) {
 								sdefense={sdefense}
 								setSdefense={setSdefense}
 								health={health}
+								level={level}
 							/>
 							<PokemonStatSpeed
 								index={5}

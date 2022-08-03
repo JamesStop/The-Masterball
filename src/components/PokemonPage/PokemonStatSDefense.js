@@ -99,6 +99,7 @@ function PokemonStatSDefense({
 					natureMulti
 			);
 		}
+		
 		setSdefense({ ...sdefense, total: newTotal });
 	};
 
