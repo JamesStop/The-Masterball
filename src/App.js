@@ -10,6 +10,7 @@ import Masterball from './assets/masterball.png';
 import UserDisplay from './components/UserPieces/UserDisplay';
 import { useEffect, useState } from 'react';
 import PleaseSignIn from './components/PleaseSignIn/PleaseSignIn';
+import SignedInHomePage from './components/Homepage/SignedInHomePage';
 
 function App() {
 	const POKE_URL = 'https://pokeapi.co/api/v2/';
@@ -53,7 +54,7 @@ function App() {
 			</header>
 			<main>
 				<Routes>
-					<Route path='/' element={<Homepage />} />
+					<Route path='/' element={!signedIn ? <Homepage /> : <SignedInHomePage />} />
 					<Route
 						path='/teams/'
 						element={

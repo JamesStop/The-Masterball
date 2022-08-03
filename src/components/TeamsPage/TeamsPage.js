@@ -79,14 +79,16 @@ function TeamsPage({ signedIn }) {
 	return (
 		<section className='teams-wrapper'>
 			<section className='new-team-create-wrapper'>
-				<form onSubmit={createNewTeam}>
-					<label htmlFor='new-team-name'>Team Name</label>
+				<form className='new-team-create-form' onSubmit={createNewTeam}>
+					<label htmlFor='new-team-name'>Team Name:</label>
 					<input
 						type='text'
 						id='new-team-name'
 						value={newTeamName}
 						onChange={handleChange}
 						required
+						minLength={1}
+						maxLength={10}
 					/>
 					<button type='submit'>create new team</button>
 				</form>

@@ -8,9 +8,14 @@
 }
 
 .new-team-create-wrapper {
-    height: 20%;
+    height: 10%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.new-team-create-form {
+    display: flex;
+    gap: 10px;
 }
