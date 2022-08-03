@@ -4,7 +4,7 @@ import './TeamsPage.css';
 import TeamsDisplaySection from './TeamsDisplaySection';
 
 function TeamsPage({ signedIn }) {
-	const [teams, setTeams] = useState({});
+	const [teams, setTeams] = useState([]);
 	const [newTeamName, setNewTeamName] = useState('');
 
 	const getTeams = async () => {
@@ -35,44 +35,46 @@ function TeamsPage({ signedIn }) {
 
 	const createNewTeam = async (event) => {
 		event.preventDefault();
-		try {
-			const response = await axios.post(
-				'https://the-link-cable.herokuapp.com/api/teams',
-				{
-					name: newTeamName,
-					positioning: {
-						0: {
-							x: 50,
-							y: 0,
+		if (teams.length < 3) {
+			try {
+				const response = await axios.post(
+					'https://the-link-cable.herokuapp.com/api/teams',
+					{
+						name: newTeamName,
+						positioning: {
+							0: {
+								x: 50,
+								y: 0,
+							},
+							1: {
+								x: 97,
+								y: 20,
+							},
+							2: {
+								x: 97,
+								y: 82,
+							},
+							3: {
+								x: 50,
+								y: 102,
+							},
+							4: {
+								x: 0,
+								y: 82,
+							},
+							5: {
+								x: 0,
+								y: 20,
+							},
 						},
-						1: {
-							x: 97,
-							y: 20,
-						},
-						2: {
-							x: 97,
-							y: 82,
-						},
-						3: {
-							x: 50,
-							y: 102,
-						},
-						4: {
-							x: 0,
-							y: 82,
-						},
-						5: {
-							x: 0,
-							y: 20,
-						},
-					},
-					owner: localStorage.getItem('userid'),
-				}
-			);
-			setNewTeamName('');
-			getTeams();
-		} catch (error) {
-			console.log(error);
+						owner: localStorage.getItem('userid'),
+					}
+				);
+				setNewTeamName('');
+				getTeams();
+			} catch (error) {
+				console.log(error);
+			}
 		}
 	};
 
