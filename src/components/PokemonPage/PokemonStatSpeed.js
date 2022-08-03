@@ -13,7 +13,6 @@ function PokemonStatSpeed({
     sattack,
     sdefense,
 	level,
-	nature,
 }) {
 	const [statName, setStatName] = useState('');
 	const [evAvailable, setEvAvailable] = useState(

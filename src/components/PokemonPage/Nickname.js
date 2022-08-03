@@ -28,16 +28,18 @@ function Nickname({ nickName, setNickName }) {
 					onChange={handleChange}
 					type='text'
 					minLength={1}
-					maxLength={10}
+					maxLength={11}
 				/>
-				<button type='submit'>submit</button>
+				<button className='nick-name-submit-button' type='submit'>submit</button>
 			</form>
 		);
 	} else {
 		return (
 			<div className='nickname-display'>
 				<span>{nickName}</span>
-				<button onClick={editMode}>edit</button>
+				<button className='nick-name-edit-button' onClick={editMode}>
+					edit
+				</button>
 			</div>
 		);
 	}
