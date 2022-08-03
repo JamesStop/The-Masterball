@@ -141,7 +141,7 @@ function PokemonStatAttack({
 							onChange={handleChange}
 							type='number'
 							min={0}
-							max={evAvailable >= 255 ? 255 : evAvailable + attack.ev}
+							max={evAvailable + attack.ev >= 255 ? 255 : evAvailable + attack.ev}
 						/>
 					</form>
 				</section>

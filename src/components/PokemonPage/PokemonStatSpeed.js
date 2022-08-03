@@ -143,7 +143,7 @@ function PokemonStatSpeed({
 							onChange={handleChange}
 							type='number'
 							min={0}
-							max={evAvailable >= 255 ? 255 : evAvailable + speed.ev}
+							max={evAvailable + speed.ev >= 255 ? 255 : evAvailable + speed.ev}
 						/>
 					</form>
 				</section>

@@ -146,7 +146,7 @@ function PokemonStatHealth({
 							onChange={handleChange}
 							type='number'
 							min={0}
-							max={evAvailable >= 255 ? 255 : evAvailable + health.ev}
+							max={evAvailable + health.ev >= 255 ? 255 : evAvailable + health.ev}
 						/>
 					</form>
 				</section>
