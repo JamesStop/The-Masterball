@@ -30,6 +30,7 @@
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     display: flex;
+    gap: 5px;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -39,6 +40,7 @@
     border-left: 1px solid black;
     border-bottom: 1px solid black;
     display: flex;
+    gap: 5px;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -48,6 +50,7 @@
     border-left: 1px solid black;
     border-top: 1px solid black;
     display: flex;
+    gap: 5px;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -57,6 +60,7 @@
     border-right: 1px solid black;
     border-top: 1px solid black;
     display: flex;
+    gap: 5px;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -64,6 +68,7 @@
 
 .stat-form {
     display: flex;
+    gap: 5px;
     justify-content: center;
     align-items: center;
     align-content: center;
