@@ -1,0 +1,35 @@
+.sign-in-modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 255, .5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 300px;
+    width: 300px;
+    border-radius: 25px;
+}
+
+.input-margin-bottom {
+    margin-bottom: 20px;
+}
+
+.signin-button {
+    height: 25px;
+    width: 75px;
+    background-color: rgb(82, 189, 91);
+    border: 2px solid black;
+    border-radius: 50px;
+}

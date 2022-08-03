@@ -1,0 +1,80 @@
+
+.big-stat-wrapper {
+    border-top: 2px solid black;
+    height: 110px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative
+}
+
+.stat-name {
+    padding: 5px;
+    height: 30px;
+    font-size: 20px;
+}
+
+.stat-wrapper {
+    position: relative;
+    border-top: 2px solid black;
+    height: 80px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.stat-base-wrapper {
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.stat-iv-wrapper {
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.stat-ev-wrapper {
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.stat-total-wrapper {
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.stat-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.stat-iv-input {
+    width: 50%;
+    margin-bottom: 0;
+}
+
+.stat-ev-input {
+    width: 50%;
+    margin-bottom: 0;
+}

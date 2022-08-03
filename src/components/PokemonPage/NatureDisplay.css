@@ -1,0 +1,29 @@
+.nature-selector {
+    margin-top: 35px;
+}
+
+.nature-info-display {
+    height: 80%;
+    width: 90%;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.decreased-stat {
+    width: 80px;
+    border: 3px solid red;
+    text-align: center;
+    border-radius:50px;
+    background-color: #c0c0c0;
+}
+
+.increased-stat {
+    width: 80px;
+    border: 3px solid green;
+    text-align: center;
+    border-radius: 50px;
+    background-color: #c0c0c0;
+}

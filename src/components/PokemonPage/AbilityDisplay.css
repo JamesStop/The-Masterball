@@ -1,0 +1,21 @@
+.ability-info-display {
+    height: 80%;
+    width: 90%;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ability-selector {
+    margin-top: 35px;
+}
+
+.ability-name-display {
+    font-size: 20px;
+}
+
+.ability-effect-display {
+    overflow-y: scroll;
+}

@@ -7,16 +7,62 @@
 
 .main-wrapper  {
   height: 100vh;
-  width: 100vh;
+  width: 100vw;
 }
 
 
 header {
-  height: 20%;
+  height: 100px;
   width: 100%;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
+.site-header-logo {
+  height: 100%;
+  width: calc(100%-100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-right: 100px;
+}
+
+.masterball-logo {
+  height: 75px;
+  width: 75px;
+}
+
+.header-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-heading {
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.sub-heading {
+  font-size: 15px;
+}
+
+
+.user-stuff {
+  height: 100%;
+  width: 100px;
+  background-color: white;
+  position: absolute;
+  right: 0;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+
 main {
-  height: 80%;
+  height: calc(100% - 100px);
   width: 100%;
 }
