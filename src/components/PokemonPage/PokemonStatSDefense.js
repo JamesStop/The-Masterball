@@ -156,7 +156,7 @@ function PokemonStatSDefense({
 							onChange={handleChange}
 							type='number'
 							min={0}
-							max={evAvailable >= 255 ? 255 : evAvailable + sdefense.ev}
+							max={evAvailable + sdefense.ev >= 255 ? 255 : evAvailable + sdefense.ev}
 						/>
 					</form>
 				</section>
