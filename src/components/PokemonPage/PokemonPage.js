@@ -7,7 +7,6 @@ import Nickname from './Nickname';
 import TeamPokemonTyping from '../TeamPage/TeamPokemonTyping';
 import AbilityDisplay from './AbilityDisplay';
 import NatureDisplay from './NatureDisplay';
-import PokemonStats from './PokemonStats';
 import PokemonStatHealth from './PokemonStatHealth';
 import PokemonStatAttack from './PokemonStatAttack';
 import PokemonStatSpeed from './PokemonStatSpeed';
@@ -45,6 +44,49 @@ function PokemonPage(props) {
 
 	useEffect(() => {
 		setPokemon({ ...pokemon, nature: nature });
+		if (nature.increasedStat?.name == 'health') {
+			setHealth({...health, nature: 1})
+		} else if (nature.decreasedStat?.name == 'health') {
+			setHealth({ ...health, nature: -1 });
+		} else {
+			setHealth({ ...health, nature: 0 });
+		}
+		if (nature.increasedStat?.name == 'attack') {
+			setAttack({ ...attack, nature: 1 });
+		} else if (nature.decreasedStat?.name == 'attack') {
+			setAttack({ ...attack, nature: -1 });
+		} else {
+			setAttack({ ...attack, nature: 0 });
+		}
+		if (nature.increasedStat?.name == 'defense') {
+			setDefense({ ...defense, nature: 1 });
+		} else if (nature.decreasedStat?.name == 'defense') {
+			setDefense({ ...defense, nature: -1 });
+		} else {
+			setDefense({ ...defense, nature: 0 });
+		}
+		if (nature.increasedStat?.name == 'sp. attack') {
+			setSattack({ ...sattack, nature: 1 });
+		} else if (nature.decreasedStat?.name == 'sp. attack') {
+			setSattack({ ...sattack, nature: -1 });
+		} else {
+			setSattack({ ...sattack, nature: 0 });
+		}
+		if (nature.increasedStat?.name == 'sp. defense') {
+			setSdefense({ ...sdefense, nature: 1 });
+		} else if (nature.decreasedStat?.name == 'sp. defense') {
+			setSdefense({ ...sdefense, nature: -1 });
+		} else {
+			setSdefense({ ...sdefense, nature: 0 });
+		}
+		if (nature.increasedStat?.name == 'speed') {
+			setSpeed({ ...speed, nature: 1 });
+		} else if (nature.decreasedStat?.name == 'speed') {
+			setSpeed({ ...speed, nature: -1 });
+		} else {
+			setSpeed({ ...speed, nature: 0 });
+		}
+			
 	}, [nature]);
 
 	useEffect(() => {

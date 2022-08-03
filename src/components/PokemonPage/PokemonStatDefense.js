@@ -38,8 +38,6 @@ function PokemonStatDefense({
 		);
 	}, [health.ev, attack.ev, defense.ev, sattack.ev, sdefense.ev, speed.ev]);
 
-
-
 	const firstload = () => {
 		setDefense({
 			...defense,
@@ -59,39 +57,7 @@ function PokemonStatDefense({
 		firstload();
 	}, []);
 
-	useEffect(() => {
-		if (nature?.decreasedStat?.name == statName) {
-			return;
-		}
-		if (nature?.increasedStat == null || !nature.increasedStat) {
-			setDefense({ ...defense, nature: 0 });
-		} else {
-			if (nature?.increasedStat.name == statName) {
-				setDefense((previousState) => {
-					console.log(statName + 'positive');
-					return { ...previousState, nature: 1 };
-				});
-			} else {
-				setDefense({ ...defense, nature: 0 });
-			}
-		}
-	}, [nature?.increasedStat?.name]);
 
-	useEffect(() => {
-		if (nature?.increasedStat?.name == statName) {
-			return;
-		}
-		if (nature?.decreasedStat == null || !nature?.decreasedStat) {
-			setDefense({ ...defense, nature: 0 });
-		} else {
-			if (nature?.decreasedStat?.name == statName) {
-				console.log(statName + 'negative');
-				setDefense({ ...defense, nature: -1 });
-			} else {
-				setDefense({ ...defense, nature: 0 });
-			}
-		}
-	}, [nature?.decreasedStat?.name]);
 
 	useEffect(() => {
 		setDefense({

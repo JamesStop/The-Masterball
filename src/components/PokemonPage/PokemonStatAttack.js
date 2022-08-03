@@ -56,39 +56,7 @@ function PokemonStatAttack({
 		firstload();
 	}, []);
 
-	useEffect(() => {
-		if (nature?.decreasedStat?.name == statName) {
-			return;
-		}
-		if (nature?.increasedStat == null || !nature.increasedStat) {
-			setAttack({ ...attack, nature: 0 });
-		} else {
-			if (nature?.increasedStat.name == statName) {
-				setAttack((previousState) => {
-					console.log(statName + 'positive');
-					return { ...previousState, nature: 1 };
-				});
-			} else {
-				setAttack({ ...attack, nature: 0 });
-			}
-		}
-	}, [nature?.increasedStat?.name]);
 
-	useEffect(() => {
-		if (nature?.increasedStat?.name == statName) {
-			return;
-		}
-		if (nature?.decreasedStat == null || !nature?.decreasedStat) {
-			setAttack({ ...attack, nature: 0 });
-		} else {
-			if (nature?.decreasedStat?.name == statName) {
-				console.log(statName + 'negative');
-				setAttack({ ...attack, nature: -1 });
-			} else {
-				setAttack({ ...attack, nature: 0 });
-			}
-		}
-	}, [nature?.decreasedStat?.name]);
 
 	useEffect(() => {
 		setAttack({
