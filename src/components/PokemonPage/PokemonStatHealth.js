@@ -124,7 +124,6 @@ function PokemonStatHealth({
 	return (
 		<div className='big-stat-wrapper'>
 			<span className='stat-name'>{statName}:</span>
-			<button onClick={calcTotal}>calc</button>
 			<section className='stat-wrapper'>
 				<section className='stat-base-wrapper'>
 					<span>Base:</span>

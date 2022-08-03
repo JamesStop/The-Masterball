@@ -74,8 +74,7 @@ function TeamPage({ POKE_URL, signedIn }) {
 						return res.json();
 					})
 					.then((res) => res);
-				console.log(responseOne);
-				console.log(responseTwo);
+
 
 				const pokemonName =
 					responseOne.name[0].toUpperCase() + responseOne.name.slice(1);
