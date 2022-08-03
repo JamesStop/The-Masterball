@@ -1,5 +1,5 @@
 # Hello and welcome to The Gitz Carlton
-<img width="1249" alt="Screen Shot" src="assets/teamspage.png">
+<img width="2038" alt="Screen Shot" src="assets/teamspage.png">
 
 Here you will find...
 
