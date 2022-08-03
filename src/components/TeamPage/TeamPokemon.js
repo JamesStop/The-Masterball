@@ -26,7 +26,7 @@ function TeamPokemon({ pokemon, getTeam }) {
 	const deletePokemon = async (event) => {
 		try {
 			const response = await axios.delete(
-				`http://localhost:1738/api/pokemon/${pokemon._id}`
+				`https://the-link-cable.herokuapp.com/api/pokemon/${pokemon._id}`
 			);
 		} catch (error) {
 			console.log(error);

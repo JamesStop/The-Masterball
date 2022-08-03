@@ -105,7 +105,7 @@ function PokemonStatSDefense({
 
 	useEffect(() => {
 		calcTotal();
-	}, [sdefense.base, sdefense.iv, sdefense.ev, level, nature]);
+	}, [sdefense.base, sdefense.iv, sdefense.ev, level, sdefense.nature]);
 
 	const handleChange = (event) => {
 		let numbers = event.target.value;

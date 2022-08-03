@@ -106,7 +106,7 @@ function PokemonStatSAttack({
 
 	useEffect(() => {
 		calcTotal();
-	}, [sattack.base, sattack.iv, sattack.ev, level, nature]);
+	}, [sattack.base, sattack.iv, sattack.ev, level, sattack.nature]);
 
 	const handleChange = (event) => {
 		let numbers = event.target.value;

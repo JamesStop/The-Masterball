@@ -103,7 +103,7 @@ function PokemonStatSpeed({
 
 	useEffect(() => {
 		calcTotal();
-	}, [speed.base, speed.iv, speed.ev, level, nature]);
+	}, [speed.base, speed.iv, speed.ev, level, speed.nature]);
 
 	const handleChange = (event) => {
 		let numbers = event.target.value;

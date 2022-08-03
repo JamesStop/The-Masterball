@@ -106,7 +106,7 @@ function PokemonStatHealth({
 
 	useEffect(() => {
 		calcTotal();
-	}, [health.base, health.iv, health.ev, level, nature]);
+	}, [health.base, health.iv, health.ev, level, health.nature]);
 
 	const handleChange = (event) => {
 		let numbers = event.target.value;

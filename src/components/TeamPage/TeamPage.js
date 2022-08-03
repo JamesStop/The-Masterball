@@ -14,7 +14,9 @@ function TeamPage({ POKE_URL, signedIn }) {
 
 	const getTeam = async () => {
 		try {
-			const response = await axios.get(`http://localhost:1738/api/teams/${id}`);
+			const response = await axios.get(
+				`https://the-link-cable.herokuapp.com/api/teams/${id}`
+			);
 			let results = {};
 			if (response.data.owner == window.localStorage.getItem('userid')) {
 				results = response.data;
@@ -28,7 +30,7 @@ function TeamPage({ POKE_URL, signedIn }) {
 	async function createPokemon() {
 		try {
 			const response = await axios.post(
-				`http://localhost:1738/api/pokemon`,
+				`https://the-link-cable.herokuapp.com/api/pokemon`,
 				creatingPokemon
 			);
 		} catch (error) {
