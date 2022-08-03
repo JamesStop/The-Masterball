@@ -16,7 +16,7 @@ function SignUp({ signingUp, setSigningUp }) {
 		event.preventDefault();
 		try {
 			const response = await axios.post(
-				`http://localhost:1738/api/signup`,
+				`https://the-link-cable.herokuapp.com/api/signup`,
 				userInfo
 			);
 		} catch (error) {

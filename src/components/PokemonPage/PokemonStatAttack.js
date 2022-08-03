@@ -102,7 +102,7 @@ function PokemonStatAttack({
 
 	useEffect(() => {
 		calcTotal();
-	}, [attack.base, attack.iv, attack.ev, level, nature]);
+	}, [attack.base, attack.iv, attack.ev, level, attack.nature]);
 
 	const handleChange = (event) => {
 		let numbers = event.target.value;

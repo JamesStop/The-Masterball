@@ -16,7 +16,7 @@ function TeamDisplay({ team, getTeams }) {
 	const deleteTeam = async (team) => {
 		try {
 			const response = await axios.delete(
-				`http://localhost:1738/api/teams/${teamId}`
+				`https://the-link-cable.herokuapp.com/api/teams/${teamId}`
 			);
 			getTeams();
 		} catch (error) {
