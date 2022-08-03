@@ -57,7 +57,7 @@ function SignIn({ signingIn, setSigningIn, setSignedIn }) {
 						className='input-margin-bottom'
 						onChange={handleChange}
 						value={userInfo.password}
-						type='text'
+						type='password'
 						id='password'
 						minLength={1}
 						maxLength={20}
