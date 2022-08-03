@@ -38,10 +38,6 @@ function PokemonStatDefense({
 	}, [health.ev, attack.ev, defense.ev, sattack.ev, sdefense.ev, speed.ev]);
 
 	const firstload = () => {
-		setDefense({
-			...defense,
-			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
-		});
 		let newName = stat;
 		if (stat[0] == 's') {
 			if (stat[1] == 'a' || stat[1] == 'd') {
@@ -58,12 +54,7 @@ function PokemonStatDefense({
 
 
 
-	useEffect(() => {
-		setDefense({
-			...defense,
-			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
-		});
-	}, [morePokemonInfo]);
+
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
