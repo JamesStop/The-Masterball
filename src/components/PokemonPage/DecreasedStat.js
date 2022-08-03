@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-function DecreasedStat({ pokemon }) {
+function DecreasedStat({ nature }) {
 	
 
-	if (pokemon.nature.decreasedStat) {
+	if (nature.decreasedStat) {
 		return (
 			<span className='decreased-stat'>
-				{pokemon.nature.decreasedStat.name}
+				{nature.decreasedStat.name}
 			</span>
 		);
 	} else {

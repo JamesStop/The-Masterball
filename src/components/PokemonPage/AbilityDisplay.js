@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './AbilityDisplay.css';
 
-function AbilityDisplay({ morePokemonInfo, pokemon, setPokemon }) {
+function AbilityDisplay({ morePokemonInfo, ability, setAbility }) {
 	const [editing, setEditing] = useState(false);
 
 	const handleClick = (event) => {
-        event.preventDefault();
+		event.preventDefault();
 		const url = event.target.options[event.target.selectedIndex].value;
 		if (event.target.value != '#') {
 			fetch(`${url}`)
@@ -15,9 +15,9 @@ function AbilityDisplay({ morePokemonInfo, pokemon, setPokemon }) {
 				.then((res) => {
 					const abilityEffect = res['effect_entries'][1].effect;
 					const abilityName = res.name[0].toUpperCase() + res.name.slice(1);
-					setPokemon({
-						...pokemon,
-						ability: { name: abilityName, effect: abilityEffect },
+					setAbility({
+						name: abilityName,
+						effect: abilityEffect,
 					});
 				});
 			setEditing(false);
@@ -45,12 +45,12 @@ function AbilityDisplay({ morePokemonInfo, pokemon, setPokemon }) {
 			</select>
 		);
 	} else {
-		if (pokemon.ability.name.length) {
+		if (ability.name.length) {
 			return (
 				<div className='ability-info-display'>
-					<span className='ability-name-display'>{pokemon.ability.name}:</span>
+					<span className='ability-name-display'>{ability.name}:</span>
 					<span className='ability-effect-display'>
-						{pokemon.ability.effect}
+						{ability.effect}
 					</span>
 					<button onClick={editMode}>Change</button>
 				</div>

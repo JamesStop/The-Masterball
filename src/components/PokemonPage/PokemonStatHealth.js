@@ -1,35 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import './PokemonStats.css';
 
-function PokemonStats({
+function PokemonStatHealth({
 	morePokemonInfo,
 	index,
 	stat,
-	speed,
-	setSpeed,
-	health,
 	setHealth,
+	speed,
 	attack,
-	setAttack,
 	defense,
-	setDefense,
+	health,
 	sattack,
-	setSattack,
 	sdefense,
-	setSdefense,
 	level,
 	nature,
 }) {
-	const [thisStat, setThisStat] = useState(
-		useState({
-			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
-			nature: 0,
-			iv: 0,
-			ev: 0,
-			total: 0,
-		})
-	);
-
 	const [statName, setStatName] = useState('');
 
 	const [evAvailable, setEvAvailable] = useState(
@@ -53,28 +38,12 @@ function PokemonStats({
 		);
 	}, [health.ev, attack.ev, defense.ev, sattack.ev, sdefense.ev, speed.ev]);
 
-	const updateStates = () => {
-		if (stat == 'health') {
-			setHealth(thisStat);
-		} else if (stat == 'attack') {
-			setAttack(thisStat);
-		} else if (stat == 'defense') {
-			setDefense(thisStat);
-		} else if (stat == 'sattack') {
-			setSattack(thisStat);
-		} else if (stat == 'sdefense') {
-			setSdefense(thisStat);
-		} else if (stat == 'speed') {
-			setSpeed(thisStat);
-		}
-	};
 
-	useEffect(() => {}, [thisStat]);
+
 
 	const firstload = () => {
-		
-		setThisStat({
-			...thisStat,
+		setHealth({
+			...health,
 			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
 		});
 		let newName = stat;
@@ -96,15 +65,15 @@ function PokemonStats({
 			return;
 		}
 		if (nature?.increasedStat == null || !nature.increasedStat) {
-			setThisStat({ ...thisStat, nature: 0 });
+			setHealth({ ...health, nature: 0 });
 		} else {
 			if (nature?.increasedStat.name == statName) {
-				setThisStat((previousState) => {
+				setHealth((previousState) => {
 					console.log(statName + 'positive');
 					return { ...previousState, nature: 1 };
 				});
 			} else {
-				setThisStat({ ...thisStat, nature: 0 });
+				setHealth({ ...health, nature: 0 });
 			}
 		}
 	}, [nature?.increasedStat?.name]);
@@ -114,20 +83,20 @@ function PokemonStats({
 			return;
 		}
 		if (nature?.decreasedStat == null || !nature?.decreasedStat) {
-			setThisStat({ ...thisStat, nature: 0 });
+			setHealth({ ...health, nature: 0 });
 		} else {
 			if (nature?.decreasedStat?.name == statName) {
 				console.log(statName + 'negative');
-				setThisStat({ ...thisStat, nature: -1 });
+				setHealth({ ...health, nature: -1 });
 			} else {
-				setThisStat({ ...thisStat, nature: 0 });
+				setHealth({ ...health, nature: 0 });
 			}
 		}
 	}, [nature?.decreasedStat?.name]);
 
 	useEffect(() => {
-		setThisStat({
-			...thisStat,
+		setHealth({
+			...health,
 			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
 		});
 	}, [morePokemonInfo]);
@@ -138,19 +107,19 @@ function PokemonStats({
 
 	const calcTotal = () => {
 		let natureMulti = 1;
-		if (thisStat.nature == 1) {
+		if (health.nature == 1) {
 			natureMulti = 1.1;
-		} else if (thisStat.nature == -1) {
+		} else if (health.nature == -1) {
 			natureMulti = 0.9;
 		} else {
 			natureMulti = 1;
 		}
-		let newTotal = thisStat.total;
+		let newTotal = health.total;
 		if (stat == 'health') {
 			newTotal =
 				Math.floor(
 					0.01 *
-						(2 * thisStat.base + thisStat.iv + Math.floor(0.25 * thisStat.ev)) *
+						(2 * health.base + health.iv + Math.floor(0.25 * health.ev)) *
 						level
 				) +
 				level +
@@ -158,18 +127,18 @@ function PokemonStats({
 		} else {
 			newTotal = Math.floor(
 				(0.01 *
-					(2 * thisStat.base + thisStat.iv + Math.floor(0.25 * thisStat.ev)) *
+					(2 * health.base + health.iv + Math.floor(0.25 * health.ev)) *
 					level +
 					5) *
 					natureMulti
 			);
 		}
-		setThisStat({ ...thisStat, total: newTotal });
+		setHealth({ ...health, total: newTotal });
 	};
 
 	useEffect(() => {
 		calcTotal();
-	}, [thisStat.base, thisStat.iv, thisStat.ev, level, nature]);
+	}, [health.base, health.iv, health.ev, level, nature]);
 
 	const handleChange = (event) => {
 		let numbers = event.target.value;
@@ -181,7 +150,7 @@ function PokemonStats({
 		if (parseInt(numbers) > max) {
 			numbers = max;
 		}
-		setThisStat({ ...thisStat, [id]: parseInt(numbers) });
+		setHealth({ ...health, [id]: parseInt(numbers) });
 	};
 
 	return (
@@ -199,7 +168,7 @@ function PokemonStats({
 						<input
 							className='stat-iv-input'
 							id='iv'
-							value={thisStat.iv}
+							value={health.iv}
 							onChange={handleChange}
 							type='number'
 							min={0}
@@ -209,7 +178,7 @@ function PokemonStats({
 				</section>
 				<section className='stat-total-wrapper'>
 					<span>Total:</span>
-					<span>{thisStat.total}</span>
+					<span>{health.total}</span>
 				</section>
 				<section className='stat-ev-wrapper'>
 					<form className='stat-form' onSubmit={handleSubmit}>
@@ -217,11 +186,11 @@ function PokemonStats({
 						<input
 							className='stat-ev-input'
 							id='ev'
-							value={thisStat.ev}
+							value={health.ev}
 							onChange={handleChange}
 							type='number'
 							min={0}
-							max={evAvailable >= 255 ? 255 : evAvailable + thisStat.ev}
+							max={evAvailable >= 255 ? 255 : evAvailable + health.ev}
 						/>
 					</form>
 				</section>
@@ -230,4 +199,4 @@ function PokemonStats({
 	);
 }
 
-export default PokemonStats;
+export default PokemonStatHealth;

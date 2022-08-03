@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Nickname.css';
 
-function Nickname({ pokemon, setPokemon }) {
+function Nickname({ nickName, setNickName }) {
 	const [updating, setUpdating] = useState(false);
 
 	const stopEdit = (event) => {
@@ -11,7 +11,7 @@ function Nickname({ pokemon, setPokemon }) {
 
 	const handleChange = (event) => {
 		event.preventDefault();
-		setPokemon({ ...pokemon, nickname: event.target.value });
+		setNickName(event.target.value);
 	};
 
 	const editMode = (event) => {
@@ -24,7 +24,7 @@ function Nickname({ pokemon, setPokemon }) {
 			<form className='nickname-form' onSubmit={stopEdit}>
 				<input
 					className='nickname-input'
-					value={pokemon.nickname}
+					value={nickName}
 					onChange={handleChange}
 					type='text'
 					minLength={1}
@@ -36,7 +36,7 @@ function Nickname({ pokemon, setPokemon }) {
 	} else {
 		return (
 			<div className='nickname-display'>
-				<span>{pokemon.nickname}</span>
+				<span>{nickName}</span>
 				<button onClick={editMode}>edit</button>
 			</div>
 		);

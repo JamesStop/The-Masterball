@@ -3,9 +3,8 @@ import './NatureDisplay.css';
 import IncreasedStat from './IncreasedStat';
 import DecreasedStat from './DecreasedStat';
 
-function NatureDisplay({ morePokemonInfo, pokemon, setPokemon }) {
+function NatureDisplay({ nature, setNature }) {
 	const [editing, setEditing] = useState(false);
-
 	const [natures, setNatures] = useState([]);
 
 	useEffect(() => {
@@ -37,13 +36,10 @@ function NatureDisplay({ morePokemonInfo, pokemon, setPokemon }) {
 					if (statDecrease) {
 						statDecrease.name = statDecrease.name.split('ecial-').join('. ');
 					}
-					setPokemon({
-						...pokemon,
-						nature: {
-							name: natureName,
-							increasedStat: statIncrease,
-							decreasedStat: statDecrease,
-						},
+					setNature({
+						name: natureName,
+						increasedStat: statIncrease,
+						decreasedStat: statDecrease,
 					});
 				});
 			setEditing(false);
@@ -70,12 +66,12 @@ function NatureDisplay({ morePokemonInfo, pokemon, setPokemon }) {
 			</select>
 		);
 	} else {
-		if (pokemon.nature.name.length) {
+		if (nature?.name) {
 			return (
 				<div className='ability-info-display'>
-					<span className='ability-name-display'>{pokemon.nature.name}:</span>
-					<IncreasedStat pokemon={pokemon} />
-					<DecreasedStat pokemon={pokemon} />
+					<span className='ability-name-display'>{nature.name}:</span>
+					<IncreasedStat nature={nature} />
+					<DecreasedStat nature={nature} />
 					<button onClick={editMode}>Change</button>
 				</div>
 			);

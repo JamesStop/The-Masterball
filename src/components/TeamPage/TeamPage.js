@@ -56,85 +56,95 @@ function TeamPage({ POKE_URL, signedIn }) {
 		createPokemon();
 	}, [creatingPokemon]);
 
-	const handleClick = (event) => {
+	const handleClick = async (event) => {
 		const url = event.target.options[event.target.selectedIndex].value;
 		if (event.target.value != '#') {
 			if (team.pokemons.length < 6) {
-				fetch(`${url}`)
+				const responseOne = await fetch(`${url}`)
 					.then((res) => {
 						return res.json();
 					})
+					.then((res) => res);
+				const responseTwo = await fetch(
+					`${responseOne.varieties[0].pokemon.url}`
+				)
 					.then((res) => {
-						const pokemonName = res.name[0].toUpperCase() + res.name.slice(1);
-						setCreatingPokemon({
-							owner: window.localStorage.getItem('userid'),
-							name: pokemonName,
-							nickname: pokemonName,
-							speciesUrl: url,
-							formUrl: res.varieties[0].pokemon.url,
-							level: 1,
-							teamId: id,
-							ability: {
-								name: '',
-								effect: '',
-							},
-							nature: {
-								name: '',
-								increasedStat: {
-									name: '',
-									url: '',
-								},
-								decreasedStat: {
-									name: '',
-									url: '',
-								},
-							},
-							stats: {
-								health: {
-									base: 0,
-									nature: 0,
-									iv: 0,
-									ev: 0,
-									total: 0,
-								},
-								attack: {
-									base: 0,
-									nature: 0,
-									iv: 0,
-									ev: 0,
-									total: 0,
-								},
-								defense: {
-									base: 0,
-									nature: 0,
-									iv: 0,
-									ev: 0,
-									total: 0,
-								},
-								sattack: {
-									base: 0,
-									nature: 0,
-									iv: 0,
-									ev: 0,
-									total: 0,
-								},
-								sdefense: {
-									base: 0,
-									nature: 0,
-									iv: 0,
-									ev: 0,
-									total: 0,
-								},
-								speed: {
-									base: 0,
-									nature: 0,
-									iv: 0,
-									ev: 0,
-									total: 0,
-								},
-							},
-						});
-					});
+						return res.json();
+					})
+					.then((res) => res);
+				console.log(responseOne);
+				console.log(responseTwo);
+
+				const pokemonName =
+					responseOne.name[0].toUpperCase() + responseOne.name.slice(1);
+				setCreatingPokemon({
+					owner: window.localStorage.getItem('userid'),
+					name: pokemonName,
+					nickname: pokemonName,
+					speciesUrl: url,
+					formUrl: responseOne.varieties[0].pokemon.url,
+					level: 1,
+					teamId: id,
+					ability: {
+						name: '',
+						effect: '',
+					},
+					nature: {
+						name: '',
+						increasedStat: {
+							name: '',
+							url: '',
+						},
+						decreasedStat: {
+							name: '',
+							url: '',
+						},
+					},
+					stats: {
+						health: {
+							base: parseInt(responseTwo.stats[0]['base_stat']),
+							nature: 0,
+							iv: 0,
+							ev: 0,
+							total: 0,
+						},
+						attack: {
+							base: parseInt(responseTwo.stats[1]['base_stat']),
+							nature: 0,
+							iv: 0,
+							ev: 0,
+							total: 0,
+						},
+						defense: {
+							base: parseInt(responseTwo.stats[2]['base_stat']),
+							nature: 0,
+							iv: 0,
+							ev: 0,
+							total: 0,
+						},
+						sattack: {
+							base: parseInt(responseTwo.stats[3]['base_stat']),
+							nature: 0,
+							iv: 0,
+							ev: 0,
+							total: 0,
+						},
+						sdefense: {
+							base: parseInt(responseTwo.stats[4]['base_stat']),
+							nature: 0,
+							iv: 0,
+							ev: 0,
+							total: 0,
+						},
+						speed: {
+							base: parseInt(responseTwo.stats[5]['base_stat']),
+							nature: 0,
+							iv: 0,
+							ev: 0,
+							total: 0,
+						},
+					},
+				});
 			}
 		}
 		event.target.value = '#';

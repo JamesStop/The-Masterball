@@ -8,9 +8,59 @@ import TeamPokemonTyping from '../TeamPage/TeamPokemonTyping';
 import AbilityDisplay from './AbilityDisplay';
 import NatureDisplay from './NatureDisplay';
 import PokemonStats from './PokemonStats';
+import PokemonStatHealth from './PokemonStatHealth';
+import PokemonStatAttack from './PokemonStatAttack';
+import PokemonStatSpeed from './PokemonStatSpeed';
+import PokemonStatSDefense from './PokemonStatSDefense';
+import PokemonStatDefense from './PokemonStatDefense';
+import PokemonStatSAttack from './PokemonStatSAttack';
+
+
 
 function PokemonPage(props) {
 	const [pokemon, setPokemon] = useState({});
+	const [pokeName, setPokeName] = useState('');
+	const [nickName, setNickName] = useState('');
+	const [level, setLevel] = useState(1);
+	const [ability, setAbility] = useState({});
+	const [nature, setNature] = useState({});
+	const [health, setHealth] = useState({});
+	const [attack, setAttack] = useState({});
+	const [defense, setDefense] = useState({});
+	const [sattack, setSattack] = useState({});
+	const [sdefense, setSdefense] = useState({});
+	const [speed, setSpeed] = useState({});
+
+	useEffect(() => {
+		setPokemon({ ...pokemon, nickname: nickName });
+	}, [nickName]);
+
+	useEffect(() => {
+		setPokemon({ ...pokemon, level: level });
+	}, [level]);
+
+	useEffect(() => {
+		setPokemon({ ...pokemon, ability: ability });
+	}, [ability]);
+
+	useEffect(() => {
+		setPokemon({ ...pokemon, nature: nature });
+	}, [nature]);
+
+	useEffect(() => {
+		setPokemon({
+			...pokemon,
+			stats: {
+				health,
+				attack,
+				defense,
+				sattack,
+				sdefense,
+				speed,
+			},
+		});
+	}, [health, attack, defense, sattack, sdefense, speed]);
+
 	const [urls, setUrls] = useState({});
 	const { id } = useParams();
 	const [morePokemonInfo, setMorePokemonInfo] = useState({});
@@ -55,6 +105,21 @@ function PokemonPage(props) {
 				results = response.data;
 			}
 			setPokemon(results);
+			setPokeName(results.name);
+			if (results.nickname.length) {
+				setNickName(results.nickname);
+			} else {
+				setNickName(results.name);
+			}
+			setLevel(results.level);
+			setAbility(results.ability);
+			setNature(results.nature);
+			setAttack(results.stats.attack);
+			setDefense(results.stats.defense);
+			setHealth(results.stats.health);
+			setSattack(results.stats.sattack);
+			setSdefense(results.stats.sdefense);
+			setSpeed(results.stats.speed);
 			setUrls({ speciesUrl: results.speciesUrl, formUrl: results.formUrl });
 		} catch (error) {
 			console.log(error);
@@ -103,7 +168,7 @@ function PokemonPage(props) {
 		if (newLevel > max) {
 			newLevel = max;
 		}
-		await setPokemon({ ...pokemon, level: parseInt(newLevel) });
+		await setLevel(parseInt(newLevel));
 	};
 
 	const stopRefresh = (event) => {
@@ -125,7 +190,7 @@ function PokemonPage(props) {
 										Level
 									</label>
 									<input
-										value={pokemon.level}
+										value={level}
 										type='number'
 										min={1}
 										max={100}
@@ -137,12 +202,12 @@ function PokemonPage(props) {
 							</div>
 							<section className='name-nickname-wrapper'>
 								<span className='pokemon-customization-name'>
-									{pokemon.name}, aka:
+									{pokeName}, aka:
 								</span>
-								<Nickname pokemon={pokemon} setPokemon={setPokemon} />
+								<Nickname nickName={nickName} setNickName={setNickName} />
 							</section>
 							<div className='image-wrapper'>
-								<Sprite morePokemonInfo={morePokemonInfo} pokemon={pokemon} />
+								<Sprite morePokemonInfo={morePokemonInfo} pokeName={pokeName} />
 							</div>
 							<TeamPokemonTyping formInfo={morePokemonInfo} />
 						</section>
@@ -151,39 +216,105 @@ function PokemonPage(props) {
 								<span className='underlined'>Ability Info:</span>
 								<AbilityDisplay
 									morePokemonInfo={morePokemonInfo}
-									pokemon={pokemon}
-									setPokemon={setPokemon}
+									ability={ability}
+									setAbility={setAbility}
 								/>
 							</section>
 							<section className='nature-wrapper'>
 								<span className='underlined'>Nature Info:</span>
 								<NatureDisplay
 									morePokemonInfo={morePokemonInfo}
-									pokemon={pokemon}
-									setPokemon={setPokemon}
+									nature={nature}
+									setNature={setNature}
 								/>
 							</section>
 						</section>
 						<section className='stats-wrapper'>
 							<span className='stats-title'>Stats:</span>
-							{morePokemonInfo.stats ? (
-								Object.keys(pokemon.stats).map((stat, index) => {
-									return morePokemonInfo.stats[index] ? (
-										<PokemonStats
-											key={stat}
-											pokemon={pokemon}
-											stat={stat}
-											index={index}
-											morePokemonInfo={morePokemonInfo}
-											setPokemon={setPokemon}
-										/>
-									) : (
-										<div> hi</div>
-									);
-								})
-							) : (
-								<div>bye</div>
-							)}
+							<PokemonStatHealth
+								index={0}
+								stat={'health'}
+								morePokemonInfo={morePokemonInfo}
+								speed={speed}
+								attack={attack}
+								defense={defense}
+								sattack={sattack}
+								sdefense={sdefense}
+								health={health}
+								setHealth={setHealth}
+								level={level}
+								nature={nature}
+							/>
+							<PokemonStatAttack
+								index={1}
+								stat={'attack'}
+								morePokemonInfo={morePokemonInfo}
+								speed={speed}
+								attack={attack}
+								setAttack={setAttack}
+								defense={defense}
+								sattack={sattack}
+								sdefense={sdefense}
+								health={health}
+								level={level}
+								nature={nature}
+							/>
+							<PokemonStatDefense
+								index={2}
+								stat={'defense'}
+								morePokemonInfo={morePokemonInfo}
+								speed={speed}
+								attack={attack}
+								defense={defense}
+								setDefense={setDefense}
+								sattack={sattack}
+								sdefense={sdefense}
+								health={health}
+								level={level}
+								nature={nature}
+							/>
+							<PokemonStatSAttack
+								index={3}
+								stat={'sattack'}
+								morePokemonInfo={morePokemonInfo}
+								speed={speed}
+								attack={attack}
+								defense={defense}
+								sattack={sattack}
+								setSattack={setSattack}
+								sdefense={sdefense}
+								health={health}
+								level={level}
+								nature={nature}
+							/>
+							<PokemonStatSDefense
+								index={4}
+								stat={'sdefense'}
+								morePokemonInfo={morePokemonInfo}
+								speed={speed}
+								attack={attack}
+								defense={defense}
+								sattack={sattack}
+								sdefense={sdefense}
+								setSdefense={setSdefense}
+								health={health}
+								level={level}
+								nature={nature}
+							/>
+							<PokemonStatSpeed
+								index={5}
+								stat={'speed'}
+								morePokemonInfo={morePokemonInfo}
+								speed={speed}
+								setSpeed={setSpeed}
+								attack={attack}
+								defense={defense}
+								sattack={sattack}
+								sdefense={sdefense}
+								health={health}
+								level={level}
+								nature={nature}
+							/>
 						</section>
 					</div>
 				);

@@ -1,35 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import './PokemonStats.css';
 
-function PokemonStats({
+function PokemonStatSDefense({
 	morePokemonInfo,
 	index,
 	stat,
-	speed,
-	setSpeed,
-	health,
-	setHealth,
-	attack,
-	setAttack,
-	defense,
-	setDefense,
-	sattack,
-	setSattack,
-	sdefense,
 	setSdefense,
+	speed,
+	attack,
+	defense,
+	health,
+	sattack,
+	sdefense,
 	level,
 	nature,
 }) {
-	const [thisStat, setThisStat] = useState(
-		useState({
-			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
-			nature: 0,
-			iv: 0,
-			ev: 0,
-			total: 0,
-		})
-	);
-
 	const [statName, setStatName] = useState('');
 
 	const [evAvailable, setEvAvailable] = useState(
@@ -53,28 +38,11 @@ function PokemonStats({
 		);
 	}, [health.ev, attack.ev, defense.ev, sattack.ev, sdefense.ev, speed.ev]);
 
-	const updateStates = () => {
-		if (stat == 'health') {
-			setHealth(thisStat);
-		} else if (stat == 'attack') {
-			setAttack(thisStat);
-		} else if (stat == 'defense') {
-			setDefense(thisStat);
-		} else if (stat == 'sattack') {
-			setSattack(thisStat);
-		} else if (stat == 'sdefense') {
-			setSdefense(thisStat);
-		} else if (stat == 'speed') {
-			setSpeed(thisStat);
-		}
-	};
 
-	useEffect(() => {}, [thisStat]);
 
 	const firstload = () => {
-		
-		setThisStat({
-			...thisStat,
+		setSdefense({
+			...sdefense,
 			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
 		});
 		let newName = stat;
@@ -92,42 +60,42 @@ function PokemonStats({
 	}, []);
 
 	useEffect(() => {
-		if (nature?.decreasedStat?.name == statName) {
+		if (nature?.decreasedStat?.name === statName) {
 			return;
 		}
 		if (nature?.increasedStat == null || !nature.increasedStat) {
-			setThisStat({ ...thisStat, nature: 0 });
+			setSdefense({ ...sdefense, nature: 0 });
 		} else {
 			if (nature?.increasedStat.name == statName) {
-				setThisStat((previousState) => {
+				setSdefense((previousState) => {
 					console.log(statName + 'positive');
 					return { ...previousState, nature: 1 };
 				});
 			} else {
-				setThisStat({ ...thisStat, nature: 0 });
+				setSdefense({ ...sdefense, nature: 0 });
 			}
 		}
 	}, [nature?.increasedStat?.name]);
 
 	useEffect(() => {
-		if (nature?.increasedStat?.name == statName) {
+		if (nature?.increasedStat?.name === statName) {
 			return;
 		}
 		if (nature?.decreasedStat == null || !nature?.decreasedStat) {
-			setThisStat({ ...thisStat, nature: 0 });
+			setSdefense({ ...sdefense, nature: 0 });
 		} else {
 			if (nature?.decreasedStat?.name == statName) {
 				console.log(statName + 'negative');
-				setThisStat({ ...thisStat, nature: -1 });
+				setSdefense({ ...sdefense, nature: -1 });
 			} else {
-				setThisStat({ ...thisStat, nature: 0 });
+				setSdefense({ ...sdefense, nature: 0 });
 			}
 		}
 	}, [nature?.decreasedStat?.name]);
 
 	useEffect(() => {
-		setThisStat({
-			...thisStat,
+		setSdefense({
+			...sdefense,
 			base: parseInt(morePokemonInfo.stats[index]['base_stat']),
 		});
 	}, [morePokemonInfo]);
@@ -138,19 +106,19 @@ function PokemonStats({
 
 	const calcTotal = () => {
 		let natureMulti = 1;
-		if (thisStat.nature == 1) {
+		if (sdefense.nature == 1) {
 			natureMulti = 1.1;
-		} else if (thisStat.nature == -1) {
+		} else if (sdefense.nature == -1) {
 			natureMulti = 0.9;
 		} else {
 			natureMulti = 1;
 		}
-		let newTotal = thisStat.total;
+		let newTotal = sdefense.total;
 		if (stat == 'health') {
 			newTotal =
 				Math.floor(
 					0.01 *
-						(2 * thisStat.base + thisStat.iv + Math.floor(0.25 * thisStat.ev)) *
+						(2 * sdefense.base + sdefense.iv + Math.floor(0.25 * sdefense.ev)) *
 						level
 				) +
 				level +
@@ -158,18 +126,18 @@ function PokemonStats({
 		} else {
 			newTotal = Math.floor(
 				(0.01 *
-					(2 * thisStat.base + thisStat.iv + Math.floor(0.25 * thisStat.ev)) *
+					(2 * sdefense.base + sdefense.iv + Math.floor(0.25 * sdefense.ev)) *
 					level +
 					5) *
 					natureMulti
 			);
 		}
-		setThisStat({ ...thisStat, total: newTotal });
+		setSdefense({ ...sdefense, total: newTotal });
 	};
 
 	useEffect(() => {
 		calcTotal();
-	}, [thisStat.base, thisStat.iv, thisStat.ev, level, nature]);
+	}, [sdefense.base, sdefense.iv, sdefense.ev, level, nature]);
 
 	const handleChange = (event) => {
 		let numbers = event.target.value;
@@ -181,7 +149,7 @@ function PokemonStats({
 		if (parseInt(numbers) > max) {
 			numbers = max;
 		}
-		setThisStat({ ...thisStat, [id]: parseInt(numbers) });
+		setSdefense({ ...sdefense, [id]: parseInt(numbers) });
 	};
 
 	return (
@@ -199,7 +167,7 @@ function PokemonStats({
 						<input
 							className='stat-iv-input'
 							id='iv'
-							value={thisStat.iv}
+							value={sdefense.iv}
 							onChange={handleChange}
 							type='number'
 							min={0}
@@ -209,7 +177,7 @@ function PokemonStats({
 				</section>
 				<section className='stat-total-wrapper'>
 					<span>Total:</span>
-					<span>{thisStat.total}</span>
+					<span>{sdefense.total}</span>
 				</section>
 				<section className='stat-ev-wrapper'>
 					<form className='stat-form' onSubmit={handleSubmit}>
@@ -217,11 +185,11 @@ function PokemonStats({
 						<input
 							className='stat-ev-input'
 							id='ev'
-							value={thisStat.ev}
+							value={sdefense.ev}
 							onChange={handleChange}
 							type='number'
 							min={0}
-							max={evAvailable >= 255 ? 255 : evAvailable + thisStat.ev}
+							max={evAvailable >= 255 ? 255 : evAvailable + sdefense.ev}
 						/>
 					</form>
 				</section>
@@ -230,4 +198,4 @@ function PokemonStats({
 	);
 }
 
-export default PokemonStats;
+export default PokemonStatSDefense;

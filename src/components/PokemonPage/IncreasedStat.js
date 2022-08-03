@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-function IncreasedStat({ pokemon }) {
+function IncreasedStat({ nature }) {
 	
 
-	if (pokemon.nature.increasedStat) {
+	if (nature.increasedStat) {
 		return (
-			<div className='increased-stat'>{pokemon.nature.increasedStat.name}</div>
+			<div className='increased-stat'>{nature.increasedStat.name}</div>
 		);
 	} else {
 		return <div className='increased-stat'>N/A</div>;
