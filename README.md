@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Hello and welcome to The Gitz Carlton
+<img width="2038" alt="Screen Shot" src="assets/teamspage.png">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Here you will find...
 
-## Available Scripts
+## Getting Started/Installation Instructions:
+### `Code`
 
-In the project directory, you can run:
+Follow these links for the front-end:
+[Website Link](https://cosmic-croissant-fd8656.netlify.app/), 
+[Github Link](https://github.com/JamesStop/The-Masterball)</br>
+and these links are for the back-end:
+[API Link](https://the-link-cable.herokuapp.com/api/), 
+[Github Link](https://github.com/JamesStop/The-Link-Cable)</br>
+On each page, click on the green `Code` button and copy the link under the SSH tab.
 
-### `npm start`
+### `git clone`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+You will need two terminals to run both the back-end and front-end.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Within your front-end folder terminal, enter 'git clone' followed by the link you copied and then press 'enter'.
 
-### `npm test`
+Within your back-end folder terminal, enter 'git clone' followed by the link you copied and then press 'enter'.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Install Dependencies:
 
-### `npm run build`
+In your terminal, you will need to install the following dependencies for the front-end:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `npm install`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+In the other terminal, you will need to install the following dependencies for the back-end:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `npm install`
+- `npm i nodemon`
+- `touch .env .gitignore`
 
-### `npm run eject`
+For the Back end, fill in the ".env" file with text reading "DATABASE_URL=YOUR_URL_HERE" and replace the "YOUR_URL_HERE" part with a link to a mongodb url of your own.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To get the front-end working with your database url you will need to go through the front end and replace any instance of https://the-link-cable.herokuapp.com/ with http://localhost:1738/ .
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `npm start and nodemon`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Next you will need to run the front-end in your terminal by using the `npm start` command. 
+Runs the app in the development mode.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To run the back-end, in your terminal use the `nodemon` command. 
+Runs the app in the development mode.
 
-## Learn More
+### Technologies Used:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- React
+- React Router 
+- Heroku
+- Axios
+- Netlify
+- Express
+- MongoDB/Mongoose
+- nodemon
+- node.js
+- react-draggable
+- chart.js/react-chartjs-2
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Features and Description:
 
-### Code Splitting
+- This application is a pokemon team builder to display, create, delete, and edit teams and pokemon information for you're specific user.
+- This application has get, create, update and delete functions for team and pokemon information, and has two post functions for user sign up and sign in. (full CRUD)
+- All information is stored in a mongodb database updates in real time.
+- This application is built with phone in mind while also being scalable to larger screens.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Contribution Guidelines:
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you would like to add any contributes, simply 'fork' the project on the Github page by clicking on the `fork` link in the upper right. From there, follow the steps above starting with copying the `code` link. Please feel free to identify any bugs, propose improvements, and if you have any additional questions or recommendations, please feel free to make an issue request to either github repository.
