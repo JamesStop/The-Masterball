@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './PokemonPage.css';
@@ -13,8 +13,7 @@ import PokemonStatSpeed from './PokemonStatSpeed';
 import PokemonStatSDefense from './PokemonStatSDefense';
 import PokemonStatDefense from './PokemonStatDefense';
 import PokemonStatSAttack from './PokemonStatSAttack';
-
-
+import RadarChart2 from './RadarChart2';
 
 function PokemonPage(props) {
 	const [pokemon, setPokemon] = useState({});
@@ -29,6 +28,13 @@ function PokemonPage(props) {
 	const [sattack, setSattack] = useState({});
 	const [sdefense, setSdefense] = useState({});
 	const [speed, setSpeed] = useState({});
+	const [chartShowing, setChartShowing] = useState(false);
+
+	
+
+	const handleShowChart = () => {
+		setChartShowing(true);
+	};
 
 	useEffect(() => {
 		setPokemon({ ...pokemon, nickname: nickName });
@@ -45,7 +51,7 @@ function PokemonPage(props) {
 	useEffect(() => {
 		setPokemon({ ...pokemon, nature: nature });
 		if (nature.increasedStat?.name == 'health') {
-			setHealth({...health, nature: 1})
+			setHealth({ ...health, nature: 1 });
 		} else if (nature.decreasedStat?.name == 'health') {
 			setHealth({ ...health, nature: -1 });
 		} else {
@@ -86,7 +92,6 @@ function PokemonPage(props) {
 		} else {
 			setSpeed({ ...speed, nature: 0 });
 		}
-			
 	}, [nature]);
 
 	useEffect(() => {
@@ -272,7 +277,12 @@ function PokemonPage(props) {
 							</section>
 						</section>
 						<section className='stats-wrapper'>
-							<span className='stats-title'>Stats:</span>
+							<div className='stats-wrapper-top-wrapper'>
+								<span className='stats-title'>Stats:</span>
+								<button className='show-chart-button' onClick={handleShowChart}>
+									chart
+								</button>
+							</div>
 							<PokemonStatHealth
 								index={0}
 								stat={'health'}
@@ -358,11 +368,35 @@ function PokemonPage(props) {
 								nature={nature}
 							/>
 						</section>
+						{chartShowing ? (
+							<ChartContext.Provider
+								value={{
+									chartShowing,
+									setChartShowing,
+									health,
+									attack,
+									defense,
+									sattack,
+									sdefense,
+									speed,
+								}}>
+								<RadarChart2
+									speed={speed}
+									attack={attack}
+									defense={defense}
+									sattack={sattack}
+									sdefense={sdefense}
+									health={health}
+									setChartShowing={setChartShowing}
+									chartShowing={chartShowing}
+								/>
+							</ChartContext.Provider>
+						) : null}
 					</div>
 				);
 			}
 		}
 	}
 }
-
+export const ChartContext = React.createContext();
 export default PokemonPage;
