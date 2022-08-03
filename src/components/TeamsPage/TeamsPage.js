@@ -35,7 +35,7 @@ function TeamsPage({ signedIn }) {
 
 	const createNewTeam = async (event) => {
 		event.preventDefault();
-		if (teams.length < 3) {
+		if (teams.length < 6) {
 			try {
 				const response = await axios.post(
 					'https://the-link-cable.herokuapp.com/api/teams',
