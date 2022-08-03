@@ -100,7 +100,6 @@ function PokemonStats({
 		} else {
 			if (nature?.increasedStat.name == statName) {
 				setThisStat((previousState) => {
-					console.log(statName + 'positive');
 					return { ...previousState, nature: 1 };
 				});
 			} else {
@@ -117,7 +116,6 @@ function PokemonStats({
 			setThisStat({ ...thisStat, nature: 0 });
 		} else {
 			if (nature?.decreasedStat?.name == statName) {
-				console.log(statName + 'negative');
 				setThisStat({ ...thisStat, nature: -1 });
 			} else {
 				setThisStat({ ...thisStat, nature: 0 });

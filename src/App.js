@@ -4,7 +4,6 @@ import Homepage from './components/Homepage/Homepage';
 import TeamsPage from './components/TeamsPage/TeamsPage';
 import TeamPage from './components/TeamPage/TeamPage';
 import PokemonPage from './components/PokemonPage/PokemonPage';
-import Profile from './components/UserPieces/Profile';
 import SignIn from './components/UserPieces/SignIn';
 import SignUp from './components/UserPieces/SignUp';
 import Masterball from './assets/masterball.png';
@@ -55,7 +54,6 @@ function App() {
 			<main>
 				<Routes>
 					<Route path='/' element={<Homepage />} />
-					<Route path='/user' />
 					<Route
 						path='/teams/'
 						element={
