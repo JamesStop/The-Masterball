@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 85%;
     height: 50%;
     gap: 5px;
     position: relative;
@@ -15,9 +15,23 @@
 }
 
 .nickname-display {
-    height: 50%;
+    height: 45%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
+}
+
+.nick-name-submit-button {
+    height: 20px;
+    width: 70px;
+    border-radius: 25px;
+    font-size: 12px;
+}
+
+.nick-name-edit-button {
+    height: 20px;
+    width: 50px;
+    border-radius: 25px;
+
 }

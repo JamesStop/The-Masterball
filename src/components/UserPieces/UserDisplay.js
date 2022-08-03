@@ -34,7 +34,13 @@ function UserDisplay({ setSigningUp, setSigningIn, signedIn, setSignedIn }) {
 	} else {
         return (
 					<div className='signed-in-user'>
-						<div className='user' onClick={goToTeams} ><span>{localStorage.getItem('username')}</span></div>
+						<div className='user' onClick={goToTeams}>
+							<span>
+								{localStorage.getItem('username').length > 3
+									? 'you'
+									: localStorage.getItem('username')}
+							</span>
+						</div>
 						<button onClick={signOut}>Sign Out</button>
 					</div>
 				);

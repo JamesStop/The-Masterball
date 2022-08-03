@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './PokemonPage.css';
@@ -29,8 +29,6 @@ function PokemonPage(props) {
 	const [sdefense, setSdefense] = useState({});
 	const [speed, setSpeed] = useState({});
 	const [chartShowing, setChartShowing] = useState(false);
-
-	
 
 	const handleShowChart = () => {
 		setChartShowing(true);
@@ -295,7 +293,6 @@ function PokemonPage(props) {
 								health={health}
 								setHealth={setHealth}
 								level={level}
-								nature={nature}
 							/>
 							<PokemonStatAttack
 								index={1}
@@ -309,7 +306,6 @@ function PokemonPage(props) {
 								sdefense={sdefense}
 								health={health}
 								level={level}
-								nature={nature}
 							/>
 							<PokemonStatDefense
 								index={2}
@@ -323,7 +319,6 @@ function PokemonPage(props) {
 								sdefense={sdefense}
 								health={health}
 								level={level}
-								nature={nature}
 							/>
 							<PokemonStatSAttack
 								index={3}
@@ -337,7 +332,6 @@ function PokemonPage(props) {
 								sdefense={sdefense}
 								health={health}
 								level={level}
-								nature={nature}
 							/>
 							<PokemonStatSDefense
 								index={4}
@@ -350,8 +344,6 @@ function PokemonPage(props) {
 								sdefense={sdefense}
 								setSdefense={setSdefense}
 								health={health}
-								level={level}
-								nature={nature}
 							/>
 							<PokemonStatSpeed
 								index={5}
@@ -365,32 +357,19 @@ function PokemonPage(props) {
 								sdefense={sdefense}
 								health={health}
 								level={level}
-								nature={nature}
 							/>
 						</section>
 						{chartShowing ? (
-							<ChartContext.Provider
-								value={{
-									chartShowing,
-									setChartShowing,
-									health,
-									attack,
-									defense,
-									sattack,
-									sdefense,
-									speed,
-								}}>
-								<RadarChart2
-									speed={speed}
-									attack={attack}
-									defense={defense}
-									sattack={sattack}
-									sdefense={sdefense}
-									health={health}
-									setChartShowing={setChartShowing}
-									chartShowing={chartShowing}
-								/>
-							</ChartContext.Provider>
+							<RadarChart2
+								speed={speed}
+								attack={attack}
+								defense={defense}
+								sattack={sattack}
+								sdefense={sdefense}
+								health={health}
+								setChartShowing={setChartShowing}
+								chartShowing={chartShowing}
+							/>
 						) : null}
 					</div>
 				);

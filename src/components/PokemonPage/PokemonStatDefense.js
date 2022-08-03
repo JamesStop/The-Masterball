@@ -13,7 +13,6 @@ function PokemonStatDefense({
 	sattack,
 	sdefense,
 	level,
-	nature,
 }) {
 	const [statName, setStatName] = useState('');
 
