@@ -205,12 +205,13 @@ function PokemonPage(props) {
 
 	const handleLevelChange = async (event) => {
 		event.preventDefault();
-		let newLevel = parestInt(event.target.value);
+		let newLevel = parseInt(event.target.value);
+		console.log(newLevel)
 		const max = parseInt(event.target.max);
 		if (newLevel < 1) {
 			newLevel = 1;
 		}
-		if (newLevel > max) {
+		if (newLevel >= max) {
 			newLevel = max;
 		}
 		await setLevel(parseInt(newLevel));
