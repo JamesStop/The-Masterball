@@ -41,7 +41,7 @@ function TeamsPokemonSpriteImg({ team, pokemon, index, position  }) {
 	const updateTeam = async () => {
 		try {
 			const response = await axios.patch(
-				`https://the-link-cable.herokuapp.com/api/teams/${id}`,
+				`https://the-link-cables.herokuapp.com/api/teams/${id}`,
 				{ ...team, positioning: positions }
 			);
 		} catch (error) {

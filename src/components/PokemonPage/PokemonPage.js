@@ -143,7 +143,7 @@ function PokemonPage(props) {
 	const getPokemon = async () => {
 		try {
 			const response = await axios.get(
-				`https://the-link-cable.herokuapp.com/api/pokemon/${id}`
+				`https://the-link-cables.herokuapp.com/api/pokemon/${id}`
 			);
 			let results = {};
 			if (response.data.owner == window.localStorage.getItem('userid')) {
@@ -191,7 +191,7 @@ function PokemonPage(props) {
 	const updatePokemon = async () => {
 		try {
 			const response = await axios.patch(
-				`https://the-link-cable.herokuapp.com/api/pokemon/${id}`,
+				`https://the-link-cables.herokuapp.com/api/pokemon/${id}`,
 				pokemon
 			);
 		} catch (error) {

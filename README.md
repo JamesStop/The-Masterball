@@ -10,7 +10,7 @@ Follow these links for the front-end:
 [Website Link](https://cosmic-croissant-fd8656.netlify.app/), 
 [Github Link](https://github.com/JamesStop/The-Masterball)</br>
 and these links are for the back-end:
-[API Link](https://the-link-cable.herokuapp.com/api/), 
+[API Link](https://the-link-cables.herokuapp.com/api/), 
 [Github Link](https://github.com/JamesStop/The-Link-Cable)</br>
 On each page, click on the green `Code` button and copy the link under the SSH tab.
 
@@ -36,7 +36,7 @@ In the other terminal, you will need to install the following dependencies for t
 
 For the Back end, fill in the ".env" file with text reading "DATABASE_URL=YOUR_URL_HERE" and replace the "YOUR_URL_HERE" part with a link to a mongodb url of your own.
 
-To get the front-end working with your database url you will need to go through the front end and replace any instance of https://the-link-cable.herokuapp.com/ with http://localhost:1738/ .
+To get the front-end working with your database url you will need to go through the front end and replace any instance of https://the-link-cables.herokuapp.com/ with http://localhost:1738/ .
 
 ### `npm start and nodemon`
 

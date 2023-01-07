@@ -10,7 +10,7 @@ function TeamsPage({ signedIn }) {
 	const getTeams = async () => {
 		try {
 			const response = await axios.get(
-				'https://the-link-cable.herokuapp.com/api/teams'
+				'https://the-link-cables.herokuapp.com/api/teams'
 			);
 			const results = await response.data.filter((team) => {
 				return team.owner == window.localStorage.getItem('userid');
@@ -38,7 +38,7 @@ function TeamsPage({ signedIn }) {
 		if (teams.length < 6) {
 			try {
 				const response = await axios.post(
-					'https://the-link-cable.herokuapp.com/api/teams',
+					'https://the-link-cables.herokuapp.com/api/teams',
 					{
 						name: newTeamName,
 						positioning: {
